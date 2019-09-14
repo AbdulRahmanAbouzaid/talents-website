@@ -58,6 +58,7 @@ Class Model {
 
     public static function insert($data)
     {
+        // var_dump($data);
         $model = get_called_class();
         $table = self::getTable($model);
         $pdo = self::getBuilder()->getPDO();
