@@ -1,0 +1,83 @@
+#form {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+#main-footer {
+  margin-top: 50px;
+}
+
+.footerFixe {
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+}
+
+.important {
+  color: red !important;
+}
+
+/* #profileImage {
+  margin: 0 !imprtant;
+  vertical-align: middle !important;
+  text-align: center !important;
+  height: 150px !important;
+  width: 150px !important;
+  border-radius: 60% !important;
+  overflow: hidden !important;
+  position: absolute !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+} */
+
+#layer {
+  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.2)),
+    url("/public/img/bg2.jpg") center / cover repeat;
+}
+
+@media only screen and (min-width: 375px) {
+  .titleText {
+    font-size: 2rem !important;
+  }
+}
+
+@media only screen and (min-height: 706px) {
+  .fixedFooter {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: red;
+    text-align: center;
+  }
+}
+
+.bg-light-coral {
+  background: #ed6b53;
+}
+
+.bg-sandy-brown {
+  background: #f3a875;
+}
+
+.bg-beige {
+  background: #f1e3d6;
+}
+
+.bg-dark-orange {
+  background: #f36c1e;
+}
+
+.bg-dim-gray {
+  background: #46393b;
+}
+
+.br-15 {
+  border-radius: 15px
+}
+
+.font-design {
+  font-size: 20px;
+  font-weight:600
+}
