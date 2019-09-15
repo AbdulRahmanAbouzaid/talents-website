@@ -33,11 +33,11 @@ Class Model {
         $model = get_called_class();
         $table = self::getTable($model);
         
-        $sql = "select * from ". $table ." where id = {$value}";
+        $sql = "select * from ". $table ." where id = {$id}";
         $statement = self::getBuilder()->prepareStatemnt($sql);
         $statement->execute();
 
-		return $statement->fetchAll(PDO::FETCH_CLASS, $model);
+		return $statement->fetchAll(PDO::FETCH_CLASS, $model)[0];
 		
     }
     

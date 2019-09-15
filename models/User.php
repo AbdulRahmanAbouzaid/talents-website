@@ -15,6 +15,11 @@ class User extends Model{
 
 
 
+    public function getTalented()
+    {
+        return Talented::where('user_id', '=', $this->id)[0];
+    }
+
     public function isAdmin()
     {
         return $this->type == 1 ? true : false;

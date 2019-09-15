@@ -10,4 +10,7 @@ $router->get('register', 'AuthController@showRegisterForm');
 $router->post('login', 'AuthController@login');
 $router->post('register', 'AuthController@register');
 
-$router->post('users', 'UsersController@store');
+$router->get('profile', 'UsersController@index');
+
+$router->post('add-material', 'TalentedController@addMaterial');
+
