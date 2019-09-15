@@ -28,21 +28,24 @@ class AuthController extends Controller{
 
     public function showRegisterForm()
     {
+        $talents = TalentType::selectAll();
+
         require 'views/register.view.php';
     }
     
     
     public function register()
     {
-        $_POST['password'] = password_hash($_POST['password'], PASSWORD_BCRYPT, ['cost' => 12]);
-        $_POST['user_type'] = 2;
-        if(array_search(null, $_POST)){
-            //some error;
-        }
-        User::insert($_POST);
-        session_start();
-        $_SESSION['user_id'] = $user->id;
-        return $this->redirectTo('/');
+        var_dump($_POST);
+        // $_POST['password'] = password_hash($_POST['password'], PASSWORD_BCRYPT, ['cost' => 12]);
+        // $_POST['user_type'] = 2;
+        // if(array_search(null, $_POST)){
+        //     //some error;
+        // }
+        // User::insert($_POST);
+        // session_start();
+        // $_SESSION['user_id'] = $user->id;
+        // return $this->redirectTo('/');
     }
 
 }

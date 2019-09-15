@@ -17,6 +17,14 @@
   color: red !important;
 }
 
+.right {
+  color: green !important ;
+}
+
+.displayNO {
+  display: none;
+}
+
 /* #profileImage {
   margin: 0 !imprtant;
   vertical-align: middle !important;
@@ -33,7 +41,7 @@
 
 #layer {
   background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.2)),
-    url("/public/img/bg2.jpg") center / cover repeat;
+    url("../img/bg2.jpg") center / cover repeat;
 }
 
 @media only screen and (min-width: 375px) {
@@ -74,10 +82,10 @@
 }
 
 .br-15 {
-  border-radius: 15px
+  border-radius: 15px;
 }
 
 .font-design {
   font-size: 20px;
-  font-weight:600
+  font-weight: 600;
 }
