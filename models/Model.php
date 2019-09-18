@@ -107,4 +107,21 @@ Class Model {
     }
 
 
+
+    public function insertInto($table, $data)
+    {
+        $pdo = self::getBuilder()->getPDO();
+
+        $keys = implode(', ', array_keys($data));
+        $values = ':'. implode(', :', array_keys($data));
+
+        $statement = $pdo->prepare("insert into " . $table . " (". $keys . ") values (". $values. ")");
+        $statement->execute($data);
+
+        $inserted_id = $pdo->lastInsertId();        
+
+        return $inserted_id;
+    }
+
+
 }

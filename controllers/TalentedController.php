@@ -21,9 +21,11 @@ class TalentedController extends Controller {
     }
 
 
-    public function addComment(Type $var = null)
+    public function like()
     {
-        # code...
+        $material = Material::find($_GET['material_id']);
+        $user = User::find($_POST['user_id']);
+        $material->addLikeBy($user_id);
     }
 
 }
