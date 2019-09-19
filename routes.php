@@ -9,6 +9,7 @@ $router->get('login', 'AuthController@showLoginForm');
 $router->get('register', 'AuthController@showRegisterForm');
 $router->post('login', 'AuthController@login');
 $router->post('register', 'AuthController@register');
+$router->get('logout', 'AuthController@logout');
 
 $router->get('profile', 'UsersController@index');
 

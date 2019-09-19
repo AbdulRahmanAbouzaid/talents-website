@@ -8,12 +8,12 @@ class TalentedController extends Controller {
         $talented = User::find($_SESSION['user_id'])->getTalented();
 
         $dir = 'public/uploads/materials/';
-        $file_name = uniqid().'-'.$_FILES['file']['name'];
+        $file_name = uniqid() . '-' . str_replace(" ", "-", strtolower($_FILES['file']['name']));
         move_uploaded_file($_FILES['file']['tmp_name'], $dir . $file_name);
 
         $talented->createMaterial([
-            'description' => $_POST['description'],
-            'file' => $file_name
+            'body' => $_POST['body'],
+            'media' => $file_name
         ]);
 
         return $this->redirectTo('/profile?id='.$_SESSION['user_id']);

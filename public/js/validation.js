@@ -8,12 +8,12 @@ const form = document.querySelector("#form");
 document
   .getElementById("submit-btn")
   .addEventListener("click", function(event) {
-    //event.preventDefault();
+    // event.preventDefault();
   });
 
 // Name Validation
 function nameV() {
-  if (name.value == null || name.value == "" || name.value.length < 5) {
+  if (name.value == null || name.value == "" || name.value.length < 4) {
     document.querySelector("#nameHelp").textContent =
       "You should enter your Name";
     document.querySelector("#nameHelp").classList.add("important");
@@ -32,9 +32,9 @@ function userV() {
     document.querySelector("#userNameHelp").textContent =
       "please enter your User name.";
     document.querySelector("#userNameHelp").classList.add("important");
-  } else if (userName.value.length < 5 || userName.value.length > 15) {
+  } else if (userName.value.length < 4 || userName.value.length > 15) {
     document.querySelector("#userNameHelp").textContent =
-      "User name min 5 charachter , max 15 charachter";
+      "User name min 4 charachter , max 15 charachter";
     document.querySelector("#userNameHelp").classList.add("important");
   }
 }
@@ -155,3 +155,7 @@ function talendM() {
     bbb.classList.add("displayNO");
   }
 }
+
+
+// POST Area Show 
+

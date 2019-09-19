@@ -48,4 +48,22 @@ class User extends Model{
     }
 
 
+    public function addTalented($talents)
+    {
+        Talented::insert([
+            'user_id' => $this->id,
+            'talents_ids' => implode(',', $talents)
+        ]);
+    }
+
+
+    public function addOrganization($description = 'new organization')
+    {
+        Organization::insert([
+            'user_id' => $this->id,
+            'description' => $description
+        ]);
+    }
+
+
 }
