@@ -20,4 +20,10 @@ class Talented extends Model {
         return Material::where('talented_id', '=', $this->id);
     }
 
+
+    public function user()
+    {
+        return User::find($this->user_id);
+    }
+
 }

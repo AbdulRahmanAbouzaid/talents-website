@@ -12,6 +12,8 @@ $router->post('register', 'AuthController@register');
 $router->get('logout', 'AuthController@logout');
 
 $router->get('profile', 'UsersController@index');
+$router->get('talented/profile', 'TalentedController@index');
+$router->get('organizations/profile', 'OrganizationsController@index');
 
 $router->post('add-material', 'TalentedController@addMaterial');
 

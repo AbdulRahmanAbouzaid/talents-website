@@ -3,7 +3,7 @@
 
 class Event extends Model {
 
-    protected static $table = 'events';
+    protected static $table = 'announcements';
 
 
 }

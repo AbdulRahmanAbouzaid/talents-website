@@ -2,6 +2,14 @@
 
 class TalentedController extends Controller {
 
+    public function index()
+    {
+        $user = User::find($_GET['id']);
+        $materials = $user->getTalented()->getMaterials();
+        require 'views/talented/profile.view.php';
+    }
+
+
     public function addMaterial()
     {
         session_start();
