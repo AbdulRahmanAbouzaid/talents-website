@@ -21,6 +21,7 @@ class AuthController extends Controller{
             $input_password = $_POST['password'];
             if(password_verify($input_password, $user->password)){
                 $_SESSION['user_id'] = $user->id;
+                $this->handleRememberMe($_POST);
                 return $this->redirectTo('profile?id='.$user->id);
             }
         }
@@ -76,6 +77,20 @@ class AuthController extends Controller{
         unset($_SESSION['user_id']);
         session_destroy();
         return $this->redirectTo('login');
+    }
+
+
+
+    public function handleRememberMe($request)
+    {
+        if(!empty($request["remember"])) {
+            setcookie ("email",$request["email"],time()+ 3600);
+            setcookie ("password",$request["password"],time()+ 3600);
+        } else {
+            setcookie("username","");
+            setcookie("password","");
+        }
+        
     }
 
 }

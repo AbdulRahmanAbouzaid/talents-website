@@ -39,6 +39,7 @@
                 name="password"
             />
             </div>
+            <input type="checkbox" name="remember" id="rememberMe"> Remember Me
 
             <button
             type="submit"
