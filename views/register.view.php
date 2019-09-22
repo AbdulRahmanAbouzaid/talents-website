@@ -72,22 +72,22 @@
           <div class="container">
             <div class="row">
               <div class="col-md-6 ">
-                <h6>Choose your career</h6>
+                <h6>Register as :</h6>
                 <select
                   class="btn bg-dim-gray py-2 text-white"
                   id="careerM"
                   onchange="talendM()"
                   name="user_type"
                 >
-                  <option value="1">Choose</option>
-                  <option value="2">Talend</option>
+                  <option value="0">Choose</option>
+                  <option value="2">Talented</option>
                   <option value="3">Organization</option>
-                  <option value="4">Vistor</option>
+                  <option value="4">Visitor</option>
                 </select>
               </div>
 
               <div class="col-md-6  displayNO" id="talendMenue">
-                <h6>Choose your Talend</h6>
+                <h6>Choose your talents</h6>
                 <div class="dropdown " >
                   <button
                     class="btn dropdown-toggle bg-dim-gray text-white"
@@ -97,14 +97,14 @@
                     aria-haspopup="true"
                     aria-expanded="false"
                   >
-                    Career
+                    Choose
                   </button>
                   <div
                     class="dropdown-menu"
                     aria-labelledby="dropdownMenuButton"
                   >
                     <?php foreach($talents as $talent) { ?>
-                      <input type="checkbox" class="ml-2" value=<?=$talent->id?> name="talent-types" />
+                      <input type="checkbox" class="ml-2" value=<?=$talent->id?> name="talent-types[]" />
                       <?= $talent->name ?><br />
                     <?php } ?>
                   </div>
@@ -149,7 +149,7 @@
             class="btn text-white btn-block bg-dim-gray font-design"
             id="submit-btn"
           >
-            REGIST
+            Create Account
           </button>
         </form>
       </div>
@@ -157,22 +157,5 @@
   </div>
 </section>
 
-<!-- 
-<script>
-  $(function() {
-    $('#talents').hide(); 
-    $('#org-desc').hide(); 
-    $('#type').change(function(){
-        if($('#type').val() == 'Talented') {
-            $('#talents').show(); 
-        } else if($('#type').val() == 'Organization'){
-            $('#org-desc').show(); 
-        } else {
-          $('#talents').hide(); 
-          $('#org-desc').hide();
-        }
-    });
-});
-</script> -->
 
 <?php include 'layout/footer.view.php'; ?>

@@ -10,6 +10,12 @@
         <h3 class="text-center bg-dim-gray br-15 py-2 mt-3 text-white">
             LOGIN
         </h3>
+        <?php if(isset($_SESSION['error'])){ ?>
+            <p style="color:red"><?= $_SESSION['error'] ?></p>
+        <?php 
+                unset($_SESSION['error']);
+            }
+        ?> 
         <form method="POST" action="/login">
             <div class="form-group ">
             <label for="email">Email</label>
@@ -33,6 +39,7 @@
                 name="password"
             />
             </div>
+            <input type="checkbox" name="remember" id="rememberMe"> Remember Me
 
             <button
             type="submit"

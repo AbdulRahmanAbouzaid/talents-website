@@ -5,6 +5,9 @@
 
 #main-footer {
   margin-top: 50px;
+  bottom: 0;
+  position: fixed;
+  width: 100%;
 }
 
 .footerFixe {
@@ -24,6 +27,26 @@
 .displayNO {
   display: none;
 }
+
+.img-profile {
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+  margin-bottom: 20px;
+}
+.img-profile-post {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+}
+
+.name-post {
+  margin-top: 11px;
+  font-size: 20px;
+  font-weight: 600;
+  color: white
+}
+
 
 /* #profileImage {
   margin: 0 !imprtant;
@@ -89,3 +112,21 @@
   font-size: 20px;
   font-weight: 600;
 }
+
+.name-font-design {
+  color: #46393b;
+  vertical-align: middle;
+  font-size: 20px;
+  font-weight: 600;
+  padding: 5px
+}
+
+.input-font-style{
+  font-size: 20px ;
+  font-weight: 400px;
+  width: 90%;
+  height: 80px;
+  overflow:visible;
+  font-family: 'Chilanka', cursive;
+}
+

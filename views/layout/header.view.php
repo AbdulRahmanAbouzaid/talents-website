@@ -1,3 +1,8 @@
+<?php 
+  if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+  }
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -23,13 +28,13 @@
     >
       <a class="navbar-brand" href="#">
         <img
-          src="/docs/4.3/assets/brand/bootstrap-solid.svg"
+          src=""
           width="30"
           height="30"
           class="d-inline-block align-top"
           alt=""
         />
-        Bootstrap
+        <b> Talents Website </b>
       </a>
 
       <button
@@ -51,38 +56,35 @@
               >Home <span class="sr-only">(current)</span></a
             >
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
-          </li>
-          <li class="nav-item dropdown px-3">
-            <a
-              class="nav-link dropdown-toggle"
-              href="#"
-              id="navbarDropdown"
-              role="button"
-              data-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
-            >
-              Dropdown
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="#">Action</a>
-              <a class="dropdown-item" href="#">Another action</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">Something else here</a>
-            </div>
-          </li>
-          <li class="nav-item px-3">
-            <a class="nav-link " href="#" tabindex="-1" aria-disabled="true"
-              >Disabled</a
-            >
-          </li>
-          <li class="nav-item px-3">
-            <a class="nav-link " href="#" tabindex="-1" aria-disabled="true"
-              >Log In</a
-            >
-          </li>
+          <?php if(!isset($_SESSION['user_id'])){?>
+            <li class="nav-item">
+              <a class="nav-link" href="/register">Register</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/login">Login</a>
+            </li>
+          <?php } else {?>
+            <li class="nav-item dropdown px-3">
+              <a
+                class="nav-link dropdown-toggle active"
+                href="#"
+                id="navbarDropdown"
+                role="button"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                <?= $user->full_name?>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="/logout">Logout</a>
+              </div>
+            </li>
+          <?php } ?>
+          
         </ul>
       </div>
     </nav>

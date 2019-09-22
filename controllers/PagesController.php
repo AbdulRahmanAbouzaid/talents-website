@@ -1,10 +1,11 @@
 <?php
 
-class PagesController
+class PagesController extends Controller
 {
 	public function home()
 	{
-		require 'views/index.view.php';
+		$this->redirectTo('/login');
+		// require 'views/index.view.php';
 	}
 
 	public function about()

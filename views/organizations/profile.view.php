@@ -1,6 +1,6 @@
 <?php 
     $title = "Profile";
-    include 'layout/header.view.php'; 
+    include('/../layout/header.view.php'); 
 ?>
 
 <section id="body">
@@ -14,7 +14,7 @@
             </div>
             <div class="row ">
               <div class="col-md-8 mx-auto  text-center br-15" style="background:#f1e3d6" >
-                <p  class=" my-auto name-font-design">Hello <?= $user->full_name?></p>
+                <p  class=" my-auto name-font-design"> <?= $user->full_name?></p>
               </div>
             </div>
 
@@ -33,7 +33,7 @@
                   <div class="row">
                     <div class="col-md-12">
                     
-                      <form form action="/add-material" method="post" enctype="multipart/form-data" >
+                      <form form action="/" method="" enctype="multipart/form-data" >
                         <div class="container">
                           <textarea name="body" id="body" style="width: 100%" rows="5" class="d-block input-font-style"></textarea>
                           
@@ -62,8 +62,8 @@
 
 
             
-            <?php foreach ($materials as $material) { ?>
-                <div data-id="<?= $material->id?>" class="card  mt-3" >
+            <?php foreach($events as $event) { ?>
+                <div data-id="<?= $event->id?>" class="card  mt-3" >
                     <div class="card-header bg-light-coral">
                         <img src="/public/img/profile.jpeg" class="img-profile-post float-left" alt="">
                         <span class=" float-left ml-3 name-post "><?= $user->full_name?></span>
@@ -72,11 +72,11 @@
                         <div class="container">
                         <div class="row">
                             <div class="col-md-12  "  >
-                            <img src="/public/uploads/materials/<?=$material->media?>" class=" card-img"  alt="">
+                            <img src="/public/uploads/events/<?=$event->media?>" class=" card-img"  alt="">
                             
                             <div class="card-body ">
                                 <p class="card-text " style="font-family: 'Chilanka', cursive; font-size:15px">
-                                    <?= $material->body ?>
+                                    <?= $event->description ?>
                                 </p>
                                 <button class=" btn text-white bg-dim-gray float-right "> Edit</button>
                             </div>
@@ -98,27 +98,5 @@
 
 
 
-<?php include 'layout/footer.view.php'; ?>
+<?php include('/../layout/footer.view.php'); ?>
 <script src="/public/js/talendWall.js"></script>
-<script>
-    $(document).ready(function(){
-        $('.like-btn').click(function(){
-
-            var material_id = $(this).parent().data('id');
-
-            $.ajax
-            ({ 
-                url: '/material/like',
-                data: {"material_id": usermaterial_id_id},
-                type: 'post',
-                success: function(result)
-                {
-                    $($this).prev().text('unlike');
-                },
-                error: function() {
-                    alert('Some Error');
-                }
-            });
-        });
-    });
-</script>

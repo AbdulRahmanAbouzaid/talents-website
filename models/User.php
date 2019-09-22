@@ -20,6 +20,12 @@ class User extends Model{
         return Talented::where('user_id', '=', $this->id)[0];
     }
 
+
+    public function getOrganization()
+    {
+        return Organization::where('user_id', '=', $this->id)[0];
+    }
+
     public function isAdmin()
     {
         return $this->type == 1 ? true : false;
@@ -45,6 +51,24 @@ class User extends Model{
     public function isVisitor()
     {
         return $this->type == 4 ? true : false;
+    }
+
+
+    public function addTalented($talents)
+    {
+        Talented::insert([
+            'user_id' => $this->id,
+            'talents_ids' => implode(',', $talents)
+        ]);
+    }
+
+
+    public function addOrganization($description = 'new organization')
+    {
+        Organization::insert([
+            'user_id' => $this->id,
+            'description' => $description
+        ]);
     }
 
 
