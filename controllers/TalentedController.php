@@ -2,14 +2,6 @@
 
 class TalentedController extends Controller {
 
-    public function index()
-    {
-        $user = User::find($_GET['id']);
-        $materials = $user->getTalented()->getMaterials();
-        require 'views/talented/profile.view.php';
-    }
-
-
     public function addMaterial()
     {
         session_start();
@@ -35,5 +27,32 @@ class TalentedController extends Controller {
         $user = User::find($_POST['user_id']);
         $material->addLikeBy($user_id);
     }
+
+
+
+
+    public function showUpdateForm()
+    {
+        $user_talents = $this->getLoggedUser()->getTalented()->getTalents();
+        $talents = TalentType::selectAll();
+        
+        require 'views/talented/update-profile.view.php';
+    }
+
+
+
+    public function updateProfile()
+    {
+        $user = $this->getLoggedUser();
+        $user->updateInfo($_POST);
+        Talented::update($user->getTalented()->id, [
+            'talents_ids' => implode(',', $_POST['talent-types'])
+        ]);
+
+        return $this->redirectTo('/profile?id='.$user->id);
+        
+    }
+
+    
 
 }

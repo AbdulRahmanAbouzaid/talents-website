@@ -33,7 +33,7 @@ Class Model {
         $model = get_called_class();
         $table = self::getTable($model);
         
-        $sql = "select * from ". $table ." where id = {$id}";
+        $sql = "select * from ". $table ." where id = ".$id;
         $statement = self::getBuilder()->prepareStatemnt($sql);
         $statement->execute();
 
@@ -47,7 +47,7 @@ Class Model {
     {
         $model = get_called_class();
         $table = self::getTable($model);
-
+        
         $statement = self::getBuilder()->prepareStatemnt("select * from " . $table ." where `" . $key . "` {$operator} '{$value}'");
 		$statement->execute();
 
@@ -83,8 +83,8 @@ Class Model {
         $keys = array_keys($data);
         $update_string = '';
 
-        foreach($keys as $key){
-            $update_string = $key . '=:' . $key . ',';
+        foreach($data as $key => $value){
+            $update_string .= "`{$key}`='{$value}',";
         }
 
         $update_string = rtrim($update_string, ',');
@@ -121,6 +121,19 @@ Class Model {
         $inserted_id = $pdo->lastInsertId();        
 
         return $inserted_id;
+    }
+
+
+
+    public static function whereIn($key, $values)
+    {
+        $model = get_called_class();
+        $table = self::getTable($model);
+        
+        $statement = self::getBuilder()->prepareStatemnt("select * from " . $table ." where `" . $key . "` IN ({$values})");
+		$statement->execute();
+
+		return $statement->fetchAll(PDO::FETCH_CLASS, $model);
     }
 
 

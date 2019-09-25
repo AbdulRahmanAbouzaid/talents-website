@@ -26,4 +26,11 @@ class Talented extends Model {
         return User::find($this->user_id);
     }
 
+
+    public function getTalents()
+    {
+        return TalentType::whereIn('id', $this->talents_ids);
+
+    }
+
 }

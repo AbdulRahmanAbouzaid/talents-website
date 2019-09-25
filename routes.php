@@ -12,8 +12,11 @@ $router->post('register', 'AuthController@register');
 $router->get('logout', 'AuthController@logout');
 
 $router->get('profile', 'UsersController@index');
-$router->get('talented/profile', 'TalentedController@index');
-$router->get('organizations/profile', 'OrganizationsController@index');
+$router->get('user/update-profile', 'UsersController@showUpdateForm');
+
+$router->post('talented/update-profile', 'TalentedController@updateProfile');
+$router->post('organization/update-profile', 'OrganizationsController@updateProfile');
+
 
 $router->post('add-material', 'TalentedController@addMaterial');
 

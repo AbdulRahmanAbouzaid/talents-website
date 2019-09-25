@@ -72,4 +72,14 @@ class User extends Model{
     }
 
 
+
+    public function updateInfo($data){
+        User::update($this->id,[
+            'full_name' => $data['name'],
+            'username' => $data['username'],
+            'email' => $data['email']
+        ]);
+    }
+
+
 }
