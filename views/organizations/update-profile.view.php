@@ -76,5 +76,5 @@
         </div>
     </div>
 </section>
-<script src="kit-fontawesome.js"></script>
+
 <?php include('/../layout/footer.view.php');  ?>

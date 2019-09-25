@@ -124,6 +124,7 @@
               onfocusout="passwordV()"
               onfocusin="defultpassword()"
             />
+            <span id="eye" class="fa fa-fw fa-eye field-icon toggle-password" onclick="showAndHide(this, 'password')" title="click to show or hide password"></span>
             <small id="passwordHelp" class="form-text text-muted"
               >Enter your password</small
             >
@@ -139,6 +140,7 @@
               onfocusout="passwordVC()"
               onfocusin="defultpasswordC()"
             />
+            <span id="eye" class="fa fa-fw fa-eye field-icon toggle-password" onclick="showAndHide(this, 'confirmPassword')" title="click to show or hide password"></span>
             <small id="passwordConfirmHelp" class="form-text text-muted"
               >Confirm your password</small
             >

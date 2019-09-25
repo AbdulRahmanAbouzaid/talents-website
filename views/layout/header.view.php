@@ -15,10 +15,9 @@
       rel="stylesheet"
       href="/public/css/bootstrap.min.css"
     />
-    <link
-      rel="stylesheet"
-      href="/public/css/font-awesome.min.css"
-    />
+    <link rel="stylesheet" href="/public/css/all-fonts.css" />
+    <link rel="stylesheet" href="/public/css/fontawesome.css" />
+    <!-- <link rel="stylesheet" href="/public/css/font-awesome.min.css" /> -->
     <link rel="stylesheet" href="/public/css/style.css" />
     <title><?= $title ?> </title>
   </head>

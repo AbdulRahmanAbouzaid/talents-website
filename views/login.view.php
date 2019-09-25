@@ -34,10 +34,10 @@
             <input
                 type="password"
                 class="form-control"
-                id="exampleInputPassword1"
+                id="password"
                 placeholder="Password"
                 name="password"
-            />
+            /><span id="eye" class="fa fa-fw fa-eye field-icon toggle-password" onclick="showAndHide(this, 'password')" title="click to show or hide password"></span>
             </div>
             <input type="checkbox" name="remember" id="rememberMe"> Remember Me
 
