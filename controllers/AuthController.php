@@ -12,9 +12,16 @@ class AuthController extends Controller{
         require 'views/login.view.php';
     }
 
+
+
     public function login()
     {
-        session_start();
+        session_start();        
+
+        $this->validate($_POST, [
+            'email' => 'required|unique:users',
+            'password' => 'required'
+        ]);
         $email = $_POST['email'];
         if($result = User::where('email', '=', $email)){
             $user = $result[0];
@@ -25,7 +32,7 @@ class AuthController extends Controller{
                 return $this->redirectTo('profile?id='.$user->id);
             }
         }
-        $_SESSION['error'] = 'Invalid Email or Password, please try agian';
+        $_SESSION['errors'][] = 'Invalid Email or Password, please try agian';
 
         return $this->redirectTo('/login');
         
