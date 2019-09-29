@@ -74,11 +74,30 @@ class User extends Model{
 
 
     public function updateInfo($data){
-        User::update($this->id,[
+        $updated_data = [
             'full_name' => $data['name'],
-            'username' => $data['username'],
-            'email' => $data['email']
+        ];
+
+        if(isset($data['password']) && !empty($data['password'])){
+            $updated_data['password'] = password_hash($data['password'], PASSWORD_BCRYPT, ['cost' => 12]);
+        }
+
+        User::update($this->id, $updated_data);
+
+    }
+
+
+
+    public static function create($data)
+    {
+        $user = static::insert([
+            'email' => $data['email'],
+            'password' => $data['password'],
+            'full_name' => $data['full_name'],
+            'type' => $data['user_type']
         ]);
+
+        return $user;
     }
 
 

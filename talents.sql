@@ -45,7 +45,6 @@ CREATE TABLE IF NOT EXISTS `comments` (
 -- Truncate table before insert `announcements`
 --
 
-TRUNCATE TABLE `announcements`;
 -- --------------------------------------------------------
 
 --
@@ -63,6 +62,9 @@ CREATE TABLE IF NOT EXISTS `events` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+
+TRUNCATE TABLE `events`;
 
 --
 -- Truncate table before insert `comments`
@@ -99,8 +101,8 @@ DROP TABLE IF EXISTS `materials`;
 CREATE TABLE IF NOT EXISTS `materials` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `talented_id` int(11) NOT NULL,
-  `description` text NOT NULL,
-  `file` varchar(30) DEFAULT NULL,
+  `body` text NOT NULL,
+  `media` varchar(30) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   KEY `foriegn` (`talented_id`)
@@ -110,7 +112,7 @@ CREATE TABLE IF NOT EXISTS `materials` (
 -- Dumping data for table `materials`
 --
 
-INSERT INTO `materials` (`id`, `talented_id`, `description`, `file`, `created_at`) VALUES
+INSERT INTO `materials` (`id`, `talented_id`, `body`, `media`, `created_at`) VALUES
 (1, 1, 'k\r\n', NULL, '2019-09-15 19:26:15'),
 (2, 1, 'njjk', '5d7e98bd65a76-Capture.PNG', '2019-09-15 20:02:05');
 
@@ -187,7 +189,7 @@ DROP TABLE IF EXISTS `talented`;
 CREATE TABLE IF NOT EXISTS `talented` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
-  `talents_ids` set('1','2','3') NOT NULL
+  `talents_ids` set('1', '2', '3', '4') NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -317,7 +319,7 @@ COMMIT;
 --
 -- AUTO_INCREMENT for table `announcements`
 --
-ALTER TABLE `announcements`
+ALTER TABLE `events`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `comments`

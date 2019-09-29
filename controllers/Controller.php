@@ -4,7 +4,9 @@ class Controller {
     
     public function getLoggedUser()
     {
-        session_start();
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
         return isset($_SESSION['user_id']) ? User::find($_SESSION['user_id']) : false;
     }
 
@@ -27,6 +29,18 @@ class Controller {
             exit;
         }
 
+    }
+
+
+
+    public function middleware($type)
+    {
+        $user = $this->getLoggedUser();
+        if($type == 'auth' && !$user){
+            return $this->redirectTo('/login');
+        }elseif($type == 'guest' && $user){
+            return $this->redirectTo('/profile?id=' . $user->id);
+        }
     }
 
 }

@@ -4,6 +4,8 @@ class UsersController extends Controller{
     
     public function index()
     {
+        $this->middleware('auth');
+     
         $user = User::find($_GET['id']);
         if($user->isTalented()){
             $materials = $user->getTalented()->getMaterials();
@@ -18,6 +20,8 @@ class UsersController extends Controller{
 
     public function showUpdateForm()
     {
+        $this->middleware('auth');
+
         $user = $this->getLoggedUser();
         if($user->isTalented()){
             $user_talents = $user->getTalented()->getTalents();

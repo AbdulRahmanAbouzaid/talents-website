@@ -50,7 +50,16 @@ class Validator {
         if(!isset($this->request[$input]) || empty($this->request[$input])){
             return $input . ' is Required';
         }
+        return false;
+    }
 
+
+
+    public function requiredFile($file)
+    {
+        if(!isset($this->request[$file]['name']) || empty($this->request[$file]['name'])){
+            return $file . ' is not uploaded!';
+        }
         return false;
     }
 
@@ -70,13 +79,10 @@ class Validator {
     }
 
 
-    public function test(Type $var = null)
-    {
-        if(strpos($rule, ':') === true){
-            $rule = explode(':', $rule);
-            $this->$rule[0]($input, $rule[1]);
-        }
-    }
+    // public function file(Type $var = null)
+    // {
+    //     if($this->request['files'])
+    // }
     
 
 }

@@ -1,6 +1,6 @@
 <?php 
   $title = 'Update Profile';
-  include('/../layout/header.view.php'); 
+  include($_SERVER['DOCUMENT_ROOT'].'/views/layout/header.view.php');
 ?>
 
 
@@ -32,31 +32,25 @@
                             <h1 class="text-left text-white titleText">Profile Information</h1>
                             </div>
                         <form method="post" action="/talented/update-profile">
-
+                            <?php include($_SERVER['DOCUMENT_ROOT'].'/views/layout/errors.view.php') ?>
+                            
                             <div class="card-body">
                             <div class='info '>
                                 <div class="input-group mb-3 ">
                                 <div class="input-group-prepend ">
                                     <span class="input-group-text text-white bg-sandy-brown" id="inputGroup-sizing-default">Name</span>
                                 </div>
-                                <input type="text" name="name" class="form-control" value="<?=$user->full_name?>" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                                <input type="text" name="name" class="form-control" value="<?=$logged_user->full_name?>" aria-label="Default" aria-describedby="inputGroup-sizing-default">
                                 </div>
 
-                                <div class='info '>
-                                <div class="input-group mb-3 ">
-                                    <div class="input-group-prepend ">
-                                    <span class="input-group-text text-white bg-sandy-brown" id="inputGroup-sizing-default">User Name</span>
-                                    </div>
-                                    <input type="text" name="username" class="form-control" value="<?=$user->username?>" aria-label="Default"
-                                    aria-describedby="inputGroup-sizing-default">
-                                </div>
+                                
 
                                 <div class="input-group mb-3 ">
                                 <div class="input-group-prepend ">
                                     <span class="input-group-text text-white bg-sandy-brown" id="inputGroup-sizing-default">Email</span>
                                 </div>
-                                <input type="email" name="email" class="form-control" value="<?=$user->email?>" aria-label="Default"
-                                    aria-describedby="inputGroup-sizing-default">
+                                <input type="email" name="email" class="form-control" value="<?=$logged_user->email?>" aria-label="Default"
+                                    aria-describedby="inputGroup-sizing-default" disabled>
                                 </div>
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend ">
@@ -88,6 +82,28 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="input-group mb-3 ">
+                                    <div class="input-group-prepend ">
+                                        <span class="input-group-text text-white bg-sandy-brown" id="inputGroup-sizing-default">New Password</span>
+                                    </div>
+                                    <input type="password" name="password" class="form-control" aria-label="Default"
+                                    aria-describedby="inputGroup-sizing-default">
+                                </div>
+                                <div class="input-group mb-3 ">
+                                    <div class="input-group-prepend ">
+                                        <span class="input-group-text text-white bg-sandy-brown" id="inputGroup-sizing-default">Confirm New Password</span>
+                                    </div>
+                                    <input type="password" name="confirm-password" class="form-control"  aria-label="Default"
+                                    aria-describedby="inputGroup-sizing-default">
+                                </div>
+                                <div class="input-group mb-3 ">
+                                    <div class="input-group-prepend ">
+                                        <span class="input-group-text text-white bg-sandy-brown" id="inputGroup-sizing-default">Current Password</span>
+                                    </div>
+                                    <input type="password" name="current-password" class="form-control"  aria-label="Default"
+                                    aria-describedby="inputGroup-sizing-default">
+                                </div>
+
                             <button type="submit" class="btn bg-dim-gray text-white float-right">Save Changes</button>
 
                         </div>
@@ -98,5 +114,5 @@
         </div>
     </div>
 </section>
-<script src="kit-fontawesome.js"></script>
-<?php include('/../layout/footer.view.php');  ?>
+<script src="/public/js/kit-fontawesome.js"></script>
+<?php include($_SERVER['DOCUMENT_ROOT'].'/views/layout/footer.view.php') ?>

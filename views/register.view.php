@@ -18,6 +18,8 @@
     <div class="row">
       <div class="col-md-5 bg-beige br-15 mx-auto">
         <form id="form" method="POST" action="/register">
+        <?php include('layout/errors.view.php') ?>
+
           <div class="form-group ">
             <label for="exampleInputEmail1">Name</label>
             <input
@@ -32,23 +34,6 @@
             />
             <small id="nameHelp" class="form-text text-muted"
               >please enter your Correct name.</small
-            >
-          </div>
-
-          <div class="form-group ">
-            <label for="exampleInputEmail1">User Name</label>
-            <input
-              type="text"
-              class="form-control"
-              id="userName"
-              name="username"
-              aria-describedby="nameHelp"
-              placeholder="Enter User Name"
-              onfocusout="userV()"
-              onfocusin="defultuser()"
-            />
-            <small id="userNameHelp" class="form-text text-muted"
-              >please enter your Uniqe User name.</small
             >
           </div>
 

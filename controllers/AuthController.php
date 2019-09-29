@@ -5,10 +5,9 @@ class AuthController extends Controller{
     function showLoginForm()
     {
         // die(password_hash('secret', PASSWORD_BCRYPT, ['cost' => 12]));
-        session_start();
-        if(isset($_SESSION['user_id'])){
-            return $this->redirectTo('/profile?id='.$_SESSION['user_id']);            
-        }
+
+        $this->middleware('guest');
+
         require 'views/login.view.php';
     }
 
@@ -19,9 +18,10 @@ class AuthController extends Controller{
         session_start();        
 
         $this->validate($_POST, [
-            'email' => 'required|unique:users',
+            'email' => 'required',
             'password' => 'required'
         ]);
+
         $email = $_POST['email'];
         if($result = User::where('email', '=', $email)){
             $user = $result[0];
@@ -41,10 +41,7 @@ class AuthController extends Controller{
 
     public function showRegisterForm()
     {
-        session_start();
-        if(isset($_SESSION['user_id'])){
-            return $this->redirectTo('/profile?id='.$_SESSION['user_id']);
-        }
+        $this->middleware('guest');
 
         $talents = TalentType::selectAll();
 
@@ -54,15 +51,16 @@ class AuthController extends Controller{
     
     public function register()
     {
+        $this->validate($_POST, [
+            'email' => 'required|unique:users',
+            'password' => 'required',
+            'full_name' => 'required',
+            'talent-types' => 'required'
+        ]);
+
         $_POST['password'] = password_hash($_POST['password'], PASSWORD_BCRYPT, ['cost' => 12]);
 
-        $user_id = User::insert([
-            'email' => $_POST['email'],
-            'password' => $_POST['password'],
-            'username' => $_POST['username'],
-            'full_name' => $_POST['full_name'],
-            'type' => $_POST['user_type']
-        ]);
+        $user_id = User::create($_POST);
         $user = User::find($user_id);
         if($_POST['user_type'] == 2) {
             $user->addTalented($_POST['talent-types']);

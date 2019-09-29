@@ -2,7 +2,7 @@
   if (session_status() == PHP_SESSION_NONE) {
       session_start();
   }
-  $user = !isset($_SESSION['user_id']) ? false : User::find($_SESSION['user_id']);
+  $logged_user = !isset($_SESSION['user_id']) ? false : User::find($_SESSION['user_id']);
   // die($_SESSION['user_id']);
 ?>
 <!DOCTYPE html>
@@ -57,7 +57,7 @@
               >Home <span class="sr-only">(current)</span></a
             >
           </li>
-          <?php if(!$user){?>
+          <?php if(!$logged_user){?>
             <li class="nav-item">
               <a class="nav-link" href="/register">Register</a>
             </li>
@@ -75,10 +75,10 @@
                 aria-haspopup="true"
                 aria-expanded="false"
               >
-                <?= $user->full_name?>
+                <?= $logged_user->full_name?>
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="/profile?id=<?=$user->id?>">View Profile</a>
+                <a class="dropdown-item" href="/profile?id=<?=$logged_user->id?>">View Profile</a>
                 <a class="dropdown-item" href="/user/update-profile">Edit Profile</a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="/logout">Logout</a>

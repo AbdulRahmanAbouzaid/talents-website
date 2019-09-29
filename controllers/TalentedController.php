@@ -4,6 +4,11 @@ class TalentedController extends Controller {
 
     public function addMaterial()
     {
+        $this->validate(array_merge($_POST, $_FILES), [
+            'body' => 'required',
+            'file' => 'requiredFile'
+        ]);
+
         session_start();
         $talented = User::find($_SESSION['user_id'])->getTalented();
 
@@ -43,13 +48,25 @@ class TalentedController extends Controller {
 
     public function updateProfile()
     {
-        $user = $this->getLoggedUser();
-        $user->updateInfo($_POST);
-        Talented::update($user->getTalented()->id, [
-            'talents_ids' => implode(',', $_POST['talent-types'])
+        $this->validate($_POST, [
+            'name' => 'required',
+            'current-password' => 'required',
+            'talent-types' => 'required'
         ]);
+        
+        $user = $this->getLoggedUser();
+        if(password_verify($_POST['current-password'], $user->password)){
+            $user->updateInfo($_POST);
+            Talented::update($user->getTalented()->id, [
+                'talents_ids' => implode(',', $_POST['talent-types'])
+            ]);
 
-        return $this->redirectTo('/profile?id='.$user->id);
+            return $this->redirectTo('/profile?id='.$user->id);
+        }
+
+        $_SESSION['errors'][] = 'Current Password is invalid';
+        return $this->redirectTo($_SERVER['HTTP_REFERER']);
+        
         
     }
 
