@@ -43,6 +43,8 @@
             LOGIN
             </button>
         </form>
+
+        <center> <p> Don't have an account? <a href="/register"> Create an account </a></p> </center>
         </div>
     </div>
     </div>

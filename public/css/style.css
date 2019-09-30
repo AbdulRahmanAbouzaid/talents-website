@@ -140,3 +140,13 @@
   right: 5px
 }
 
+
+
+.navbar-nav {
+  margin-right : 3em;  
+}
+
+
+.navbar-brand {
+  margin-left: 3em;
+}

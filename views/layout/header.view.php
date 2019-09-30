@@ -3,7 +3,18 @@
       session_start();
   }
   $logged_user = !isset($_SESSION['user_id']) ? false : User::find($_SESSION['user_id']);
-  // die($_SESSION['user_id']);
+  
+  $uri = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
+  switch($uri){
+    case '' : $home = true;
+              break;
+    case 'login' : $login = true;
+                    break;
+    case 'about' : $about = true;
+                    break;
+    default : break;                
+  }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -29,9 +40,9 @@
     >
       <a class="navbar-brand" href="#">
         <img
-          src=""
-          width="30"
-          height="30"
+          src="/public/img/talent.png"
+          width="40"
+          height="40"
           class="d-inline-block align-top"
           alt=""
         />
@@ -52,17 +63,16 @@
 
       <div class="collapse navbar-collapse " id="navbarSupportedContent">
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item active px-3">
-            <a class="nav-link" href="#"
-              >Home <span class="sr-only">(current)</span></a
-            >
+          <li class="nav-item <?= $home ? 'active' : ''?> px-3">
+            <a class="nav-link" href="/"
+              >Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item <?= $about ? 'active' : ''?>">
+              <a class="nav-link" href="/about">About</a>
           </li>
           <?php if(!$logged_user){?>
             <li class="nav-item">
-              <a class="nav-link" href="/register">Register</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/login">Login</a>
+              <a class="nav-link <?= $login ? 'active' : ''?>" href="/login">Login</a>
             </li>
           <?php } else {?>
             <li class="nav-item dropdown px-3">

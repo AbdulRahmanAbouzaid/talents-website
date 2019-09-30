@@ -1,6 +1,6 @@
 <?php 
     $title = "Profile";
-    include('/../layout/header.view.php'); 
+    include($_SERVER['DOCUMENT_ROOT'].'/views/layout/header.view.php')
 ?>
 
 <section id="body">
@@ -25,10 +25,9 @@
               <div class="card-header bg-light-coral" >
                 <img src="/public/img/profile.jpeg" class="img-profile-post float-left" alt="">
                 <span class=" float-left ml-3 name-post "><?=$user->full_name?></span>
-                <button id="newPost" onclick="showPostArea()" class="btn bg-dim-gray text-white float-right mt-2"> New Post</button>
               </div>
 
-              <div class="card-body bg-beige displayNO" id="postArea">
+              <div class="card-body bg-beige" id="postArea">
                 <div class="container">
                   <div class="row">
                     <div class="col-md-12">
@@ -98,5 +97,5 @@
 
 
 
-<?php include('/../layout/footer.view.php'); ?>
-<script src="/public/js/talendWall.js"></script>
+<?php  include($_SERVER['DOCUMENT_ROOT'].'/views/layout/footer.view.php'); ?>
+<!-- <script src="/public/js/talendWall.js"></script> -->

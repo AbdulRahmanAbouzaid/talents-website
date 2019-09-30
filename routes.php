@@ -19,4 +19,5 @@ $router->post('organization/update-profile', 'OrganizationsController@updateProf
 
 
 $router->post('add-material', 'TalentedController@addMaterial');
+$router->post('add-event', 'OrganizationsController@addEvent');
 

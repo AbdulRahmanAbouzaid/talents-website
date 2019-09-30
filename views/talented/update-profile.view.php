@@ -93,7 +93,7 @@
                                     <div class="input-group-prepend ">
                                         <span class="input-group-text text-white bg-sandy-brown" id="inputGroup-sizing-default">Confirm New Password</span>
                                     </div>
-                                    <input type="password" name="confirm-password" class="form-control"  aria-label="Default"
+                                    <input type="password" name="password-confirm" class="form-control"  aria-label="Default"
                                     aria-describedby="inputGroup-sizing-default">
                                 </div>
                                 <div class="input-group mb-3 ">

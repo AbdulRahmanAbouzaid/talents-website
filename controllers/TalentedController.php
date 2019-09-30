@@ -51,7 +51,8 @@ class TalentedController extends Controller {
         $this->validate($_POST, [
             'name' => 'required',
             'current-password' => 'required',
-            'talent-types' => 'required'
+            'talent-types' => 'required',
+            'password' => 'confirmed',
         ]);
         
         $user = $this->getLoggedUser();

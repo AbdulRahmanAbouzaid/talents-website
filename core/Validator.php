@@ -79,10 +79,26 @@ class Validator {
     }
 
 
-    // public function file(Type $var = null)
-    // {
-    //     if($this->request['files'])
-    // }
+
+    
+    public function requiredIf($input, $condition)
+    {
+        $condition = explode('=', $condition);
+        if(isset($this->request[$condition[0]]) && $this->request[$condition[0]] == $condition[1]){
+            return $this->required($input);
+        }
+        return false;
+    }
+
+
+
+    public function confirmed($password)
+    {
+        if(isset($this->request[$password]) && !empty($this->request[$password])){
+            return $this->request[$password] != $this->request[$password . '-confirm'] ? 'Password confirmation isn\'t matched' : false;
+        }
+        return false;
+    }
     
 
 }
