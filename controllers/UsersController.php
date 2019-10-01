@@ -11,6 +11,7 @@ class UsersController extends Controller{
             $materials = $user->getTalented()->getMaterials();
             require 'views/talented/profile.view.php';
         }elseif($user->isOrganization()){
+            $talents = TalentType::selectAll();
             $events = $user->getOrganization()->getEvents();
             require 'views/organizations/profile.view.php';
         }

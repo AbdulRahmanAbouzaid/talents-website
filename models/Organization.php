@@ -15,4 +15,18 @@ class Organization extends Model {
     {
         return Event::where('organization_id', '=', $this->id);
     }
+
+
+
+    public function createEvent($data)
+    {
+        Event::insert([
+            'organization_id' => $this->id,
+            'title' => $data['title'],
+            'content' => $data['content'],
+            'date' => $data['date'],
+            'talents_ids' => implode(',', $data['talent-types'])
+            // 'media' => $data['file']
+        ]);
+    }
 }

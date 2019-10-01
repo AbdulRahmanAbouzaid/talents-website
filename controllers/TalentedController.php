@@ -71,6 +71,16 @@ class TalentedController extends Controller {
         
     }
 
+
+
+
+
+    public function getTalentedOf()
+    {
+        $talented_users = TalentType::find($_GET['id'])->getTalented();
+        // var_dump($talented_users);
+        require 'views/talented.view.php';
+    }
     
 
 }

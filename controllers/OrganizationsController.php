@@ -35,4 +35,32 @@ class OrganizationsController extends Controller {
 
     }
 
+
+
+
+    public function addEvent()
+    {
+        $this->validate(array_merge($_POST, $_FILES), [
+            'title' => 'required',
+            'content' => 'required',
+            'date' => 'required',
+            'talent-types' => 'required'
+        ]);
+
+        session_start();
+
+        $user = $this->getLoggedUser();
+
+        // $dir = 'public/uploads/events/';
+        // $file_name = uniqid() . '-' . str_replace(" ", "-", strtolower($_FILES['file']['name']));
+        // move_uploaded_file($_FILES['file']['tmp_name'], $dir . $file_name);
+
+        // $_POST['file'] = $file_name; 
+
+        $user->getOrganization()->createEvent($_POST);
+
+        return $this->redirectTo('/profile?id=' . $user->id);
+
+    }
+
 }

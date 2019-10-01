@@ -4,8 +4,8 @@ class PagesController extends Controller
 {
 	public function home()
 	{
-		$this->redirectTo('/login');
-		// require 'views/index.view.php';
+		$talents = TalentType::selectAll();
+		require 'views/index.view.php';
 	}
 
 	public function about()

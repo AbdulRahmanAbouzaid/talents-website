@@ -38,7 +38,7 @@
     <nav
       class="navbar  navbar-expand-lg navbar-dark bg-light-coral text-white px-2"
     >
-      <a class="navbar-brand" href="#">
+      <a class="navbar-brand" href="/">
         <img
           src="/public/img/talent.png"
           width="40"
