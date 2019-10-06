@@ -103,26 +103,26 @@
 <?php 
     include($_SERVER['DOCUMENT_ROOT'].'/views/layout/footer.view.php');
 ?>
-<!-- <script src="/public/js/talendWall.js"></script> -->
+<script src="/public/js/talendWall.js"></script>
 <script>
-    $(document).ready(function(){
-        $('.like-btn').click(function(){
+    // $(document).ready(function(){
+    //     $('.like-btn').click(function(){
 
-            var material_id = $(this).parent().data('id');
+    //         var material_id = $(this).parent().data('id');
 
-            $.ajax
-            ({ 
-                url: '/material/like',
-                data: {"material_id": material_id},
-                type: 'post',
-                success: function(result)
-                {
-                    $($this).prev().text('unlike');
-                },
-                error: function() {
-                    alert('Some Error');
-                }
-            });
-        });
-    });
+    //         $.ajax
+    //         ({ 
+    //             url: '/material/like',
+    //             data: {"material_id": material_id},
+    //             type: 'post',
+    //             success: function(result)
+    //             {
+    //                 $($this).prev().text('unlike');
+    //             },
+    //             error: function() {
+    //                 alert('Some Error');
+    //             }
+    //         });
+    //     });
+    // });
 </script>

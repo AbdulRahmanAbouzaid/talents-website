@@ -50,7 +50,7 @@
                             <div class="card-header bg-light-coral">
                             <h1 class="text-left text-white titleText">Profile Information</h1>
                             </div>
-                        <form method="post" action="/organization/update-profile">
+                        <form method="post" action="<?= $update_action ?>">
                             <?php include($_SERVER['DOCUMENT_ROOT'].'/views/layout/errors.view.php') ?>                            
                             <div class="card-body">
                             <div class='info '>
@@ -68,14 +68,46 @@
                                     <input type="email" name="email" class="form-control" value="<?=$logged_user->email?>" aria-label="Default"
                                         aria-describedby="inputGroup-sizing-default" disabled>
                                 </div>
-
-                                <div class="input-group mb-3 ">
-                                    <div class="input-group-prepend ">
-                                        <span class="input-group-text text-white bg-sandy-brown" id="inputGroup-sizing-default">Description</span>
+                                <?php if(isset($organization)){ ?>
+                                    <div class="input-group mb-3 ">
+                                        <div class="input-group-prepend ">
+                                            <span class="input-group-text text-white bg-sandy-brown" id="inputGroup-sizing-default">Description</span>
+                                        </div>
+                                        <input type="text" name="description" class="form-control" value="<?=$organization->description?>" aria-label="Default"
+                                            aria-describedby="inputGroup-sizing-default">
                                     </div>
-                                    <input type="text" name="description" class="form-control" value="<?=$organization->description?>" aria-label="Default"
-                                        aria-describedby="inputGroup-sizing-default">
-                                </div>
+                                <?php }elseif(isset($user_talents)){ ?>
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend ">
+                                            <span class="input-group-text text-white bg-sandy-brown" id="inputGroup-sizing-default">Talents</span>
+                                        </div>
+                                        <div>
+                                            <div class="dropdown ">
+                                            <button
+                                                class="btn dropdown-toggle bg-dim-gray text-white"
+                                                type="button"
+                                                id="dropdownMenuButton"
+                                                data-toggle="dropdown"
+                                                aria-haspopup="true"
+                                                aria-expanded="false"
+                                            >
+                                                Choose
+                                            </button>
+                                            <div
+                                                class="dropdown-menu"
+                                                aria-labelledby="dropdownMenuButton"
+                                            >
+                                                <?php foreach($talents as $talent) { 
+                                                    $checked = in_array($talent->id, array_column($user_talents, 'id')) ? 'checked' : '';
+                                                ?>
+                                                <input type="checkbox" class="ml-2" value=<?=$talent->id?> name="talent-types[]" <?=$checked?>/>
+                                                <?= $talent->name ?><br />
+                                                <?php } ?>
+                                            </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <?php } ?>
                                 <div class="input-group mb-3 ">
                                     <div class="input-group-prepend ">
                                         <span class="input-group-text text-white bg-sandy-brown" id="inputGroup-sizing-default">New Password</span>

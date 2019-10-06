@@ -9,7 +9,7 @@
           <div class="col-md-3 my-3 text-center"  id="profileImage">
             <div class="row">
               <div class="col-md-12">
-                <img src="/public/img/profile.jpeg" class="img-profile" alt="">
+                <img src="data:image/png;base64,<?=base64_encode($user->photo)?>" class="img-profile" alt="">
               </div>
             </div>
             <div class="row ">

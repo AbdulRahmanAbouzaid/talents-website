@@ -25,16 +25,7 @@ class TalentedController extends Controller {
 
     }
 
-
-    public function like()
-    {
-        $material = Material::find($_GET['material_id']);
-        $user = User::find($_POST['user_id']);
-        $material->addLikeBy($user_id);
-    }
-
-
-
+    
 
     public function showUpdateForm()
     {
@@ -67,8 +58,6 @@ class TalentedController extends Controller {
 
         $_SESSION['errors'][] = 'Current Password is invalid';
         return $this->redirectTo($_SERVER['HTTP_REFERER']);
-        
-        
     }
 
 

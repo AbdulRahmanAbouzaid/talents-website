@@ -29,10 +29,10 @@ class Validator {
         foreach($rules as $rule){
             if(strpos($rule, ':') == true){
                 $rule = explode(':', $rule);
-                $param = $rule[1];
+                $condition = $rule[1];
                 $rule = $rule[0];
                 // var_dump($rule);
-                $error = $this->$rule($input, $param);
+                $error = $this->$rule($input, $condition);
             }else{
                 $error = $this->$rule($input);
             }
