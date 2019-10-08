@@ -9,7 +9,8 @@
           <div class="col-md-3 my-3 text-center"  id="profileImage">
             <div class="row">
               <div class="col-md-12">
-                <img src="data:image/png;base64,<?=base64_encode($user->photo)?>" class="img-profile" alt="">
+                <?php $src = $user->photo ? 'data:image/png;base64,'.base64_encode($user->photo) : '/public/img/profile.jpeg'?>                
+                <img src="<?=$src?>" class="img-profile" alt="">
               </div>
             </div>
             <div class="row ">
@@ -19,12 +20,11 @@
             </div>
 
           </div>
-
           <div class="col-md-8 " id="posts">
             <?php if($logged_user && $logged_user->id == $user->id) { ?>
               <div class="card " >
                 <div class="card-header bg-light-coral" >
-                  <img src="/public/img/profile.jpeg" class="img-profile-post float-left" alt="">
+                  <img src="<?=$src?>" class="img-profile-post float-left" alt="">
                   <span class=" float-left ml-3 name-post "><?=$user->full_name?></span>
                 </div>
 
@@ -99,7 +99,7 @@
             <?php foreach($events as $event) { ?>
                 <div data-id="<?= $event->id?>" class="card  mt-3" >
                     <div class="card-header bg-light-coral">
-                        <img src="/public/img/profile.jpeg" class="img-profile-post float-left" alt="">
+                        <img src="<?=$src?>" class="img-profile-post float-left" alt="">
                         <span class=" float-left ml-3 name-post "><?= $event->title?></span>
                     </div>
                     <div class="card-body bg-beige">

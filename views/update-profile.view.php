@@ -22,7 +22,7 @@
         <div class="row" >   
             <div class="col-md-4 mt-3 ">
                 <div class="card text-center" style="background:none">
-                    <?php $src = $logged_user->photo ? 'data:image/png;base64,'.base64_encode($user->photo) : '/public/img/profile.jpeg'?>
+                    <?php $src = $logged_user->photo ? 'data:image/png;base64,'.base64_encode($logged_user->photo) : '/public/img/profile.jpeg'?>
                     <img src="<?=$src?>" alt="" id="profile-pic" width="75%" style="margin:auto"/>
 
                     <div class="card-body">
