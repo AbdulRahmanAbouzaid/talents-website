@@ -21,29 +21,24 @@
     <div class="container">
         <div class="row" >   
             <div class="col-md-4 mt-3 ">
-                <div class="card bg-beige text-center">
+                <div class="card text-center" style="background:none">
+                    <?php $src = $logged_user->photo ? 'data:image/png;base64,'.base64_encode($user->photo) : '/public/img/profile.jpeg'?>
+                    <img src="<?=$src?>" alt="" id="profile-pic" width="75%" style="margin:auto"/>
+
                     <div class="card-body">
-                    <form id="change-picture-form" runat="server" method="POST" action="/change-picture" enctype="multipart/form-data" class="upload-form">
-                        <label for="file-input" class="label">
-                            <span class="upload-icon fa fa-camera" title="upload new picture" onchange="readURL(this);"> </span>
-                        </label>
-                        <input id="file-input" type="file" onchange="readURL(this);" name="profilePicture"/>
-                        <div style="font-size:200px ; position: relative;height:1em">
-                            <i class=" fas fa-id-badge"style="margin: 0;
-                                                            position: absolute;
-                                                            top: 50%;
-                                                            left: 50%;
-                                                            transform: translate(-50%, -50%)"
-                            ></i>
-                            <img src="" alt="" id="profile-pic" />
-                        </div>
-                        </div>
-                        <div class="card-footer" style="display:none">
-                            <button type="submit" class="btn bg-dim-gray text-white ">Change</button>
-                            <button class="btn bg-dim-gray text-white">Cancel</button>
-                        </div>
-                    </form>                    
-                </div>
+                        
+                        <form class="color-beige" id="change-picture-form" runat="server" method="POST" action="/change-picture" enctype="multipart/form-data" class="upload-form">
+                            <label for="file-input" class="label">
+                                <span class="upload-icon fa fa-camera" title="upload new picture" onchange="readURL(this);"> </span>
+                            </label>
+                            <input id="file-input" type="file" onchange="readURL(this);" name="profilePicture" style="display:none"/>
+                            </div>
+                            <div class="card-footer" style="display:none">
+                                <button type="submit" class="btn bg-dim-gray text-white ">Change</button>
+                                <!-- <button class="btn bg-dim-gray text-white">Cancel</button> -->
+                            </div>
+                        </form>                    
+                    </div>
                 </div>
                     <div class="col-md-8 mt-3" id="profileInfo">
                         <div class="card bg-beige text-center">
