@@ -27,7 +27,7 @@ $router->get('organizations', 'OrganizationsController@getEventsOf');
 
  $router->post('change-picture', 'UsersController@changeProfileImage');
 
-$router->post('material/like', 'UsersController@like');
-$router->get('material/unlike', 'UsersController@unlike');
-$router->post('material/add-comment', 'UsersController@addComment');
-$router->get('material/delete-comment', 'UsersController@deleteComment');
+$router->post('material/like', 'MaterialController@like');
+$router->get('material/unlike', 'MaterialController@unlike');
+$router->post('material/add-comment', 'MaterialController@addComment');
+$router->get('material/delete-comment', 'MaterialController@deleteComment');

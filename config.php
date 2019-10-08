@@ -5,7 +5,7 @@ return[
 
 	'database' => [
 
-		'name' => 'talents-site',
+		'name' => 'talents',
 
 		'username' => 'root',
 

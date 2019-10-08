@@ -65,25 +65,80 @@
             <?php } ?>
             
             <?php foreach ($materials as $material) { ?>
-                <div data-id="<?= $material->id?>" class="card  mt-3" >
+                <div class="card  mt-3" >
                     <div class="card-header bg-light-coral">
                         <img src="/public/img/profile.jpeg" class="img-profile-post float-left" alt="">
                         <span class=" float-left ml-3 name-post "><?= $user->full_name?></span>
                     </div>
                     <div class="card-body bg-beige">
-                        <div class="container">
-                        <div class="row">
-                            <div class="col-md-12  "  >
-                            <div class="card-body ">
-                                <p class="card-text " style="font-family: 'Chilanka', cursive; font-size:15px">
-                                    <?= $material->body ?>
-                                </p>
+                        <div class="container" data-id="<?= $material->id?>">
+                            <div class="row">
+                                <div class="col-md-12  "  >
+                                <div class="card-body post-body">
+                                    <p class="card-text " style="font-family: 'Chilanka', cursive; font-size:15px">
+                                        <?= $material->body ?>
+                                    </p>
+                                </div>
+                                <img src="/public/uploads/materials/<?=$material->media?>" class=" card-img"  alt="">
+                                
+                                
+                                </div>
                             </div>
-                            <img src="/public/uploads/materials/<?=$material->media?>" class=" card-img"  alt="">
-                            
-                            
-                            </div>
-                        </div>
+                            <!-- start of comment area -->
+                            <?php if($logged_user->isVisitor() || $logged_user->isTalented()) { ?>
+                              <div style="border-top : solid 1px #46393b" data-id="<?= $material->id?>">
+                                <?php 
+                                  if($material->isLikedBy($logged_user->id)){
+                                    $function_name = 'unlike(this)';
+                                    $likedOrNot = 'Unlike';
+                                    $red = 'bg-red';
+                                  }else{
+                                    $function_name = 'like(this)';
+                                    $likedOrNot = 'Like';
+                                    $red = '';
+                                  }
+                                ?>
+                                <button class=" btn my-1  mr-2 cLH"  onclick=<?=$function_name?>>
+                                    <span><i id="heartPost1" class="far fa-heart <?=$red?>"></i></span> <?= $likedOrNot?>
+                                </button>
+                                <button class=" btn my-1  cLH " id="commentbtn1" onclick="comment(this)">Comment</button>
+                              </div>
+                              
+                              <div class="py-1 displayNO" id="commentArea" style="border-top : solid 1px #46393b">
+                                  <form action="/material/add-comment" method="POST">
+                                    <div class="container">
+                                      <div class="row" >
+                                        <input type="hidden" name="material_id" value="<?=$material->id?>">
+                                        <textarea class="d-block input-font-style" name="body"></textarea>
+                                        <button class="btn cLH" id="commentbtn1"><i class="fas fa-comment-dots"></i></button>
+                                      </div>  
+                                    </div>
+                                  </form>     
+                              </div>
+                            <?php } ?>
+                            <?php foreach($material->comments() as $comment){?>
+                              <div  style="border-top : solid 1px #46393b" >
+
+                                <div class="my-1" data-id="<?=$comment->id?>">
+                                  <div class="btn-group float-right">
+                                    <button type="button" class="btn" id="dropdownMenuReference" data-toggle="dropdown" aria-haspopup="true"
+                                      aria-expanded="false" data-reference="parent">
+                                      <i class="fas fa-ellipsis-v"></i>
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuReference" data-id="<?=$comment->id?>">
+                                      <a class="dropdown-item  text-center m-0 p-0" onclick="removeParentComment(this)"
+                                        >
+                                        Delete</a>
+                                    </div>
+                                  </div>
+                                  <h5 class="text-muted"> <?= $comment->user()->full_name ?> </h5>
+                                  
+                                  <p class="card-text ml-3" style="font-size:15px"><?=$comment->body?></p>
+                                </div>
+                              </div>
+                            <?php } ?>
+                              <!-- end of comment area -->
+                        <!-- end of container -->
                         </div>
                             
                     
@@ -103,26 +158,5 @@
 <?php 
     include($_SERVER['DOCUMENT_ROOT'].'/views/layout/footer.view.php');
 ?>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="/public/js/talendWall.js"></script>
-<script>
-    // $(document).ready(function(){
-    //     $('.like-btn').click(function(){
-
-    //         var material_id = $(this).parent().data('id');
-
-    //         $.ajax
-    //         ({ 
-    //             url: '/material/like',
-    //             data: {"material_id": material_id},
-    //             type: 'post',
-    //             success: function(result)
-    //             {
-    //                 $($this).prev().text('unlike');
-    //             },
-    //             error: function() {
-    //                 alert('Some Error');
-    //             }
-    //         });
-    //     });
-    // });
-</script>

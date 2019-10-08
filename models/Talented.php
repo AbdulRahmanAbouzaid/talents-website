@@ -33,4 +33,15 @@ class Talented extends Model {
 
     }
 
+
+
+
+    public function addComment($data)
+    {
+        Comment::insert([
+            'material_id' => $data['material_id'],
+            'user_id' => $this->user->id
+        ]);
+    }
+
 }

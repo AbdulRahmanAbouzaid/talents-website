@@ -1,15 +1,12 @@
-<footer
-      id="main-footer"
-      class=" text-center p-2 bg-light-coral text-white fixedFooter"
-    >
-      <div class="container">
-        <div class="row">
-          <div class="col ">
-            <p>Copyright 2019 &copy; Elyarmouk</p>
-          </div>
-        </div>
+<footer class=" text-center p-2 bg-light-coral text-white">
+  <div class="container">
+    <div class="row">
+      <div class="col ">
+        <p>Copyright 2019 &copy; Tabouk</p>
       </div>
-    </footer>
+    </div>
+  </div>
+</footer>
 
     <script src="/public/js/jquery.js"></script>
     <script src="/public/js/popper.min.js"></script>
