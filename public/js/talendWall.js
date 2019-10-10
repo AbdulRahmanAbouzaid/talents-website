@@ -10,13 +10,26 @@ function comment(e) {
 }
 
 function removePost(e) {
-  e.parentNode.parentNode.parentNode.parentNode.remove();
+  var material_id = $(e).parent().data('id');
+
+  $.ajax
+  ({ 
+      url: '/material/delete?id='+material_id,
+      type: 'get',
+      success: function(result)
+      {
+        e.parentNode.parentNode.parentNode.parentNode.remove();
+        // e.parentElement.parentElement.parentElement.remove();        
+      },
+      error: function() {
+          alert('Some Error');
+      }
+  });
 }
 
 function like(e) {
   var material_id = $(e).parent().data('id');
-  console.log(material_id);
-
+  
   $.ajax
   ({ 
       url: '/material/like',
@@ -24,7 +37,7 @@ function like(e) {
       type: 'post',
       success: function(result)
       {
-          $(e).html('<span><i id="heartPost1" class="far fa-heart" style="color:red"></i></span> unlike');
+          $(e).html('<span><i id="heartPost1" class="far fa-heart" style="color:red"></i></span> Unlike');
           $(e).attr('onclick', 'unlike(this)');
       },
       error: function() {
@@ -38,10 +51,9 @@ function like(e) {
 
 function unlike(e) {
   var material_id = $(e).parent().data('id');
-  console.log(material_id);
-
+  
   $.ajax
-  ({ 
+  ({
       url: '/material/unlike?id=' + material_id,
       type: 'get',
       success: function(result)

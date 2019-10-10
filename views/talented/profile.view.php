@@ -69,11 +69,24 @@
                     <div class="card-header bg-light-coral">
                         <img src="<?=$src?>" class="img-profile-post float-left" alt="">
                         <span class=" float-left ml-3 name-post "><?= $user->full_name?></span>
+                        <?php if($logged_user->id == $user->id) { ?>
+                          <div class="btn-group float-right"> 
+                            <button type="button" class="btn text-white" id="dropdownMenuReference"
+                              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-reference="parent">
+                              <i class="fas fa-ellipsis-v"></i>
+                            </button>
+                            
+                            <div class=" dropdown-menu" aria-labelledby="dropdownMenuReference" data-id="<?= $material->id?>">
+                              <a class="dropdown-item text-center m-0 p-0" onclick="removePost(this)" style="border-bottom:solid 1px #46393b" > Delete</a>
+                              <a class="dropdown-item text-center m-0 p-0"> Edit</a>
+                            </div> 
+                          </div>
+                        <?php } ?>
                     </div>
                     <div class="card-body bg-beige">
                         <div class="container" data-id="<?= $material->id?>">
                             <div class="row">
-                                <div class="col-md-12  "  >
+                                <div class="col-md-12">
                                 <div class="card-body post-body">
                                     <p class="card-text " style="font-family: 'Chilanka', cursive; font-size:15px">
                                         <?= $material->body ?>
@@ -97,7 +110,7 @@
                                     $likedOrNot = 'Like';
                                     $red = '';
                                   }
-                                ?>
+                              ?>
                                 <button class=" btn my-1  mr-2 cLH"  onclick=<?=$function_name?>>
                                     <span><i id="heartPost1" class="far fa-heart <?=$red?>"></i></span> <?= $likedOrNot?>
                                 </button>
@@ -118,19 +131,20 @@
                             <?php } ?>
                             <?php foreach($material->comments() as $comment){?>
                               <div  style="border-top : solid 1px #46393b" >
-
                                 <div class="my-1" data-id="<?=$comment->id?>">
-                                  <div class="btn-group float-right">
-                                    <button type="button" class="btn" id="dropdownMenuReference" data-toggle="dropdown" aria-haspopup="true"
-                                      aria-expanded="false" data-reference="parent">
-                                      <i class="fas fa-ellipsis-v"></i>
-                                    </button>
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuReference" data-id="<?=$comment->id?>">
-                                      <a class="dropdown-item  text-center m-0 p-0" onclick="removeParentComment(this)"
-                                        >
-                                        Delete</a>
+                                  <?php if($logged_user->id == $user->id) { ?>
+                                    <div class="btn-group float-right">
+                                      <button type="button" class="btn" id="dropdownMenuReference" data-toggle="dropdown" aria-haspopup="true"
+                                        aria-expanded="false" data-reference="parent">
+                                        <i class="fas fa-ellipsis-v"></i>
+                                      </button>
+                                      <div class="dropdown-menu" aria-labelledby="dropdownMenuReference" data-id="<?=$comment->id?>">
+                                        <a class="dropdown-item  text-center m-0 p-0" onclick="removeParentComment(this)"
+                                          >
+                                          Delete</a>
+                                      </div>
                                     </div>
-                                  </div>
+                                  <?php } ?>
                                   <h5 class="text-muted"> <?= $comment->user()->full_name ?> </h5>
                                   
                                   <p class="card-text ml-3" style="font-size:15px"><?=$comment->body?></p>

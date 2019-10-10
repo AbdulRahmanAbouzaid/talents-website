@@ -45,7 +45,7 @@ class Material extends Model {
     {
         Comment::insert([
             'user_id' => $data['user_id'],
-            'material_id' => $data['material_id'],
+            'material_id' => $this->id,
             'body' => $data['body']
         ]);
     }

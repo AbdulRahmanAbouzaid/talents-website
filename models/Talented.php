@@ -17,7 +17,7 @@ class Talented extends Model {
 
     public function getMaterials()
     {
-        return Material::where('talented_id', '=', $this->id);
+        return Material::where('talented_id', '=', $this->id, true);
     }
 
 

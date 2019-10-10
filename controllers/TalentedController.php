@@ -6,15 +6,18 @@ class TalentedController extends Controller {
     {
         $this->validate(array_merge($_POST, $_FILES), [
             'body' => 'required',
-            'file' => 'requiredFile'
+            // 'file' => 'requiredFile'
         ]);
 
         session_start();
         $talented = User::find($_SESSION['user_id'])->getTalented();
+        $file_name = null;
 
-        $dir = 'public/uploads/materials/';
-        $file_name = uniqid() . '-' . str_replace(" ", "-", strtolower($_FILES['file']['name']));
-        move_uploaded_file($_FILES['file']['tmp_name'], $dir . $file_name);
+        if(isset($_FILES['file']['name']) && !empty($_FILES['file']['name'])){
+            $dir = 'public/uploads/materials/';
+            $file_name = uniqid() . '-' . str_replace(" ", "-", strtolower($_FILES['file']['name']));
+            move_uploaded_file($_FILES['file']['tmp_name'], $dir . $file_name);
+        }
 
         $talented->createMaterial([
             'body' => $_POST['body'],

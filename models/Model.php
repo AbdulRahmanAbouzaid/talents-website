@@ -15,7 +15,7 @@ Class Model {
     }
 
 
-    public static function selectAll()
+    public static function selectAll($opations = [])
 	{
         $model = get_called_class();
         $table = self::getTable($model);
@@ -43,12 +43,15 @@ Class Model {
     
 
 
-    public static function where($key, $operator = '=', $value)
+    public static function where($key, $operator = '=', $value, $latest = false)
     {
         $model = get_called_class();
         $table = self::getTable($model);
+
         
-        $statement = self::getBuilder()->prepareStatemnt("select * from " . $table ." where `" . $key . "` {$operator} '{$value}'");
+        $order_by = $latest ? 'ORDER BY created_at DESC' : '';
+        
+        $statement = self::getBuilder()->prepareStatemnt("select * from " . $table ." where `" . $key . "` {$operator} '{$value}' {$order_by}");
 		$statement->execute();
 
 		return $statement->fetchAll(PDO::FETCH_CLASS, $model);

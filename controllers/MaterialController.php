@@ -52,4 +52,9 @@ class MaterialController extends Controller {
 
 
 
+
+    public function deleteMaterial()
+    {
+        Material::delete($_GET['id']);
+    }
 }

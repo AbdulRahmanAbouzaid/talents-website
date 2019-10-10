@@ -31,3 +31,4 @@ $router->post('material/like', 'MaterialController@like');
 $router->get('material/unlike', 'MaterialController@unlike');
 $router->post('material/add-comment', 'MaterialController@addComment');
 $router->get('material/delete-comment', 'MaterialController@deleteComment');
+$router->get('material/delete', 'MaterialController@deleteMaterial');

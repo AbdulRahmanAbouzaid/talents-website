@@ -1,4 +1,4 @@
-<footer class=" text-center p-2 bg-light-coral text-white fixedFooter">
+<footer id="main-footer" class=" text-center p-2 bg-light-coral text-white">
   <div class="container">
     <div class="row">
       <div class="col ">
