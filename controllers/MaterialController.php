@@ -9,6 +9,9 @@ class MaterialController extends Controller {
         $material = Material::find($_POST['material_id']);
         $user = $this->getLoggedUser();
         $material->addLikeBy($user->id);
+        Material::update($material->id, [
+            'likes' => $material->likes + 1
+        ]);
     }
 
 
@@ -20,6 +23,9 @@ class MaterialController extends Controller {
         $material = Material::find($_GET['id']);
         $user = $this->getLoggedUser();
         $material->unlike($user->id);
+        Material::update($material->id, [
+            'likes' => $material->likes - 1
+        ]);
     }
 
 
@@ -37,6 +43,9 @@ class MaterialController extends Controller {
         $_POST['user_id'] = $this->getLoggedUser()->id;
 
         $material->addComment($_POST);
+        Material::update($material->id, [
+            'comments' => $material->comments + 1
+        ]);
         return $this->redirectTo($_SERVER['HTTP_REFERER']);
     }
 
@@ -48,6 +57,9 @@ class MaterialController extends Controller {
     {
         // $material = Material::find($_GET['id']);
         Comment::delete($_GET['comment_id']);
+        Material::update($material->id, [
+            'comments' => $material->comments - 1
+        ]);
     }
 
 

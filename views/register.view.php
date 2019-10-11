@@ -4,7 +4,7 @@
 ?>
 
 <!--REGISTER-->
-<section id="form">
+<section id="form" class="main-body">
   <div class="container">
     <div class="row">
       <div class="col-md-5 br-15  bg-beige mx-auto">

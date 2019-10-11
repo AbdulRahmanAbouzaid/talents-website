@@ -3,7 +3,7 @@
     include($_SERVER['DOCUMENT_ROOT'].'/views/layout/header.view.php');
 ?>
 
-<section id="body">
+<section id="body" class="main-body">
       <div class="container">
         <div class="row mt-5"  >
           <div class="col-md-3 my-3 text-center"  id="profileImage">
@@ -93,42 +93,46 @@
                                     </p>
                                 </div>
                                 <img src="/public/uploads/materials/<?=$material->media?>" class=" card-img"  alt="">
-                                
-                                
                                 </div>
                             </div>
                             <!-- start of comment area -->
-                            <?php if($logged_user->isVisitor() || $logged_user->isTalented()) { ?>
-                              <div style="border-top : solid 1px #46393b" data-id="<?= $material->id?>">
-                                <?php 
-                                  if($material->isLikedBy($logged_user->id)){
-                                    $function_name = 'unlike(this)';
-                                    $likedOrNot = 'Unlike';
-                                    $red = 'bg-red';
-                                  }else{
-                                    $function_name = 'like(this)';
-                                    $likedOrNot = 'Like';
-                                    $red = '';
-                                  }
-                              ?>
-                                <button class=" btn my-1  mr-2 cLH"  onclick=<?=$function_name?>>
-                                    <span><i id="heartPost1" class="far fa-heart <?=$red?>"></i></span> <?= $likedOrNot?>
-                                </button>
-                                <button class=" btn my-1  cLH " id="commentbtn1" onclick="comment(this)">Comment</button>
+                            <div class="interaction-area">
+                              <div class="interaction-count">
+                                  <small class="comments"><span class="comments-count"> <?= $material->comments ?> </span> Comment(s) </small>
+                                  <small class="likes"><span class="likes-count"> <?= $material->likes ?> </span> Like(s) </small>
                               </div>
-                              
-                              <div class="py-1 displayNO" id="commentArea" style="border-top : solid 1px #46393b">
-                                  <form action="/material/add-comment" method="POST">
-                                    <div class="container">
-                                      <div class="row" >
-                                        <input type="hidden" name="material_id" value="<?=$material->id?>">
-                                        <textarea class="d-block input-font-style" name="body"></textarea>
-                                        <button class="btn cLH" id="commentbtn1"><i class="fas fa-comment-dots"></i></button>
-                                      </div>  
-                                    </div>
-                                  </form>     
-                              </div>
-                            <?php } ?>
+                              <?php if($logged_user->isVisitor() || $logged_user->isTalented()) { ?>
+                                <div style="border-top : solid 1px #46393b" data-id="<?= $material->id?>">
+                                  <?php 
+                                    if($material->isLikedBy($logged_user->id)){
+                                      $function_name = 'unlike(this)';
+                                      $likedOrNot = 'Unlike';
+                                      $red = 'bg-red';
+                                    }else{
+                                      $function_name = 'like(this)';
+                                      $likedOrNot = 'Like';
+                                      $red = '';
+                                    }
+                                ?>
+                                  <button class=" btn my-1  mr-2 cLH"  onclick=<?=$function_name?>>
+                                      <span><i id="heartPost1" class="far fa-heart <?=$red?>"></i></span> <?= $likedOrNot?>
+                                  </button>
+                                  <button class=" btn my-1  cLH " id="commentbtn1" onclick="comment(this)">Comment</button>
+                                </div>
+                                
+                                <div class="py-1 displayNO" id="commentArea" style="border-top : solid 1px #46393b">
+                                    <form action="/material/add-comment" method="POST">
+                                      <div class="container">
+                                        <div class="row" >
+                                          <input type="hidden" name="material_id" value="<?=$material->id?>">
+                                          <textarea class="d-block input-font-style" name="body"></textarea>
+                                          <button class="btn cLH" id="commentbtn1"><i class="fas fa-comment-dots"></i></button>
+                                        </div>  
+                                      </div>
+                                    </form>     
+                                </div>
+                              <?php } ?>
+                            </div>
                             <?php foreach($material->comments() as $comment){?>
                               <div  style="border-top : solid 1px #46393b" >
                                 <div class="my-1" data-id="<?=$comment->id?>">

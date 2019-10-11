@@ -3,7 +3,7 @@
     include($_SERVER['DOCUMENT_ROOT'].'/views/layout/header.view.php')
 ?>
 
-<section id="body">
+<section id="body" class="main-body">
       <div class="container">
         <div class="row mt-5"  >
           <div class="col-md-3 my-3 text-center"  id="profileImage">

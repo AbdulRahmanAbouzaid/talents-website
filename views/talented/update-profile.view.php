@@ -5,7 +5,7 @@
 
 
 <!--BODY-->
-<section id="body">
+<section id="body" class="main-body">
     <div class="container">
         <div class="row" >   
             <div class="col-md-4 mt-3 ">

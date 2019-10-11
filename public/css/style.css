@@ -184,6 +184,23 @@
 }
 
 
-#body {
+.main-body {
   margin-bottom: 100px;
+}
+
+
+.comments {
+  border-right: 1px solid;
+  padding-right: 5px;
+}
+
+
+
+.likes{
+  padding-left: 10px;
+}
+
+
+.interaction-count {
+  margin: 5px;
 }
