@@ -8,9 +8,13 @@ include 'layout/header.view.php';
 	<?php foreach($talented_users as $talented) : ?>
 		<a href="profile?id=<?=$talented->user_id?>">
 			<div class="card 1">
-				<div class="card_image"> <img src="/public/img/profile.jpeg" /> </div>
+				<?php
+					$user = $talented->user();
+					$src = $user->photo ? 'data:image/png;base64,'.base64_encode($user->photo) : '/public/img/profile.jpeg'
+				?>
+				<div class="card_image"> <img src="<?=$src?>" /> </div>
 				<div class="card_title title-white">
-					<p><?=$talented->user()->full_name?></p>
+					<p><?=$user->full_name?></p>
 				</div>
 			</div>
 		</a>
