@@ -55,7 +55,7 @@ class MaterialController extends Controller {
 
     public function deleteComment()
     {
-        // $material = Material::find($_GET['id']);
+        $material = Comment::find($_GET['comment_id'])->material();
         Comment::delete($_GET['comment_id']);
         Material::update($material->id, [
             'comments' => $material->comments - 1

@@ -102,7 +102,7 @@
                                   <small class="likes"><span class="likes-count"> <?= $material->likes ?> </span> Like(s) </small>
                               </div>
                               <?php if($logged_user->isVisitor() || $logged_user->isTalented()) { ?>
-                                <div style="border-top : solid 1px #46393b" data-id="<?= $material->id?>">
+                                <div style="border-top : solid 1px #bfb8b9" data-id="<?= $material->id?>">
                                   <?php 
                                     if($material->isLikedBy($logged_user->id)){
                                       $function_name = 'unlike(this)';
@@ -120,7 +120,7 @@
                                   <button class=" btn my-1  cLH " id="commentbtn1" onclick="comment(this)">Comment</button>
                                 </div>
                                 
-                                <div class="py-1 displayNO" id="commentArea" style="border-top : solid 1px #46393b">
+                                <div class="py-1 displayNO" id="commentArea" style="border-top : solid 1px #bfb8b9">
                                     <form action="/material/add-comment" method="POST">
                                       <div class="container">
                                         <div class="row" >
@@ -134,7 +134,7 @@
                               <?php } ?>
                             </div>
                             <?php foreach($material->comments() as $comment){?>
-                              <div  style="border-top : solid 1px #46393b" >
+                              <div  style="border-top : solid 1px #bfb8b9" >
                                 <div class="my-1" data-id="<?=$comment->id?>">
                                   <?php if($logged_user->id == $user->id) { ?>
                                     <div class="btn-group float-right">

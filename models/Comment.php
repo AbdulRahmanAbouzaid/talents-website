@@ -10,4 +10,10 @@ class Comment extends Model {
         return User::find($this->user_id);
     }
     
+
+
+    public function material(Type $var = null)
+    {
+        return Material::find($this->material_id);
+    }
 }

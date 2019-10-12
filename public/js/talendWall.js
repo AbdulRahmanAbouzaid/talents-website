@@ -39,6 +39,7 @@ function like(e) {
       {
           $(e).html('<span><i id="heartPost1" class="far fa-heart" style="color:red"></i></span> Unlike');
           $(e).attr('onclick', 'unlike(this)');
+          $('.likes-count').html(parseInt($('.likes-count').html(), 10)+1)
       },
       error: function() {
           alert('Some Error');
@@ -60,6 +61,8 @@ function unlike(e) {
       {
           $(e).html('<span><i id="heartPost1" class="far fa-heart"></i></span> Like');
           $(e).attr('onclick', 'like(this)');
+          $('.likes-count').html(parseInt($('.likes-count').html(), 10)-1)
+
       },
       error: function() {
           alert('Some Error');
@@ -79,7 +82,9 @@ function removeParentComment(e) {
       type: 'get',
       success: function(result)
       {
-        e.parentElement.parentElement.parentElement.remove();        
+        e.parentElement.parentElement.parentElement.remove();
+        $('.comments-count').html(parseInt($('.comments-count').html(), 10)-1)
+
       },
       error: function() {
           alert('Some Error');
