@@ -140,4 +140,19 @@ Class Model {
     }
 
 
+
+
+
+    public static function whereOr($first, $second)
+    {
+        $model = get_called_class();
+        $table = self::getTable($model);
+        
+        $statement = self::getBuilder()->prepareStatemnt("select * from {$table} where {$first} OR {$second}");
+		$statement->execute();
+
+		return $statement->fetchAll(PDO::FETCH_CLASS, $model);
+    }
+
+
 }

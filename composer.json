@@ -1,5 +1,5 @@
 {
-    "name": "",
+    "name": "T",
     "description": "",
     "autoload": {
         "classmap": [
@@ -7,6 +7,7 @@
         ]
     },
     "require": {
-        "plasticbrain/php-flash-messages": "^1.0"
+        "plasticbrain/php-flash-messages": "^1.0",
+        "cboden/ratchet": "^0.4"
     }
 }

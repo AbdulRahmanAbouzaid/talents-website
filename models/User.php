@@ -101,4 +101,13 @@ class User extends Model{
     }
 
 
+
+
+
+    public function chats()
+    {
+        return Message::whereOr('sent_to = '.$this->id, 'sent_from = '.$this->id);
+    }
+
+
 }

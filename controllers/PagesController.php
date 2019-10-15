@@ -19,4 +19,14 @@ class PagesController extends Controller
 		require 'views/contact.view.php';
 
 	}
+
+
+
+	public function chat()
+	{
+		$user = $this->getLoggedUser();
+		$chats= $user->chats();
+		require 'views/chat.view.php';
+
+	}
 }

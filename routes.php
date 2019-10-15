@@ -4,6 +4,7 @@ $router->get('', 'PagesController@home');
 $router->get('home', 'PagesController@home');
 $router->get('about', 'PagesController@about');
 $router->get('contact', 'PagesController@contact');
+$router->get('chat', 'PagesController@chat');
 
 $router->get('login', 'AuthController@showLoginForm');
 $router->get('register', 'AuthController@showRegisterForm');
