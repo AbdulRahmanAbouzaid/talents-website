@@ -63,18 +63,53 @@
 
       <div class="collapse navbar-collapse " id="navbarSupportedContent">
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item <?= $home ? 'active' : ''?> px-3">
-            <a class="nav-link" href="/"
-              >Home <span class="sr-only">(current)</span></a>
-          </li>
-          <li class="nav-item <?= $about ? 'active' : ''?>">
-              <a class="nav-link" href="/about">About</a>
-          </li>
+          
           <?php if(!$logged_user){?>
+            <li class="nav-item <?= $home ? 'active' : ''?> px-3">
+              <a class="nav-link" href="/"
+                >Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item <?= $about ? 'active' : ''?>">
+                <a class="nav-link" href="/about">About</a>
+            </li>
             <li class="nav-item">
               <a class="nav-link <?= $login ? 'active' : ''?>" href="/login">Login</a>
             </li>
           <?php } else {?>
+            <li class="nav-item active px-2 ">
+              <a class="nav-link py-0 my-0" href="#" ><i class="fas fa-home"></i></a>
+            </li>
+            <li class="nav-item dropdown px-2">
+              <a class="nav-link  py-0 my-0" href="#" id="Message" role="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                <i class="far fa-envelope" style="position: relative; "></i>
+                <?php 
+                  $msgNotifications = $logged_user->msgNotifications(); 
+                  $count = count($msgNotifications);
+                ?>
+                <span class="notification-label msg-notify"><?=$count?></span>
+              </a>
+              <div class="dropdown-menu msg-dropdown" aria-labelledby="Message">
+                <?php foreach ($msgNotifications as $notification) { ?>
+                  <a class="dropdown-item" href="<?=$notification->content . '&notification_id='.$notification->id?>">You have new message</a>
+                  <?= $count > 1 ? '<div class="dropdown-divider"></div>' : '' ?>
+                <?php } ?>
+              </div>
+            </li>
+            <li class="nav-item dropdown px-2 ">
+              <a class="nav-link  py-0 my-0" href="#" id="Notification" role="button" data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false">
+                <i class="far fa-bell" style="position: relative;"></i>
+                <span class="notification-label">3</span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="Notification">
+                <a class="dropdown-item" href="#">View profile</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">Edite Profile</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">Log out</a>
+              </div>
+            </li>
             <li class="nav-item dropdown px-3">
               <a
                 class="nav-link dropdown-toggle active"

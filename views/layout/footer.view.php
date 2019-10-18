@@ -25,6 +25,30 @@
           pass.type = "password";
         }
       }
+
+      <?php if($logged_user){?>
+        var conn = new WebSocket('ws://localhost:8080');
+          conn.onmessage = function(e){
+              var content = e.data;
+              var data = content.split(";delimeter;");
+              if($('.msg_history')[0]){
+                $('.msg_history').append('<div class="incoming_msg"><div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div><div class="received_msg"><div class="received_withd_msg"><p>' + data[0] + '</p><span class="time_date"> 11:01 AM    |    June 9</span></div></div></div>');
+                $(".msg_history").scrollTop($(".msg_history")[0].scrollHeight);
+              }
+              
+              $('.msg-dropdown').prepend('<a class="dropdown-item" href="/chat?other_id='+data[1]+'&notification_id='+data[2]+'"> You have new message</a><div class="dropdown-divider"></div>');
+              $('.msg-notify').html(parseInt($('.msg-notify').html(), 10)+1);
+          };
+
+          conn.onopen = function(){
+              var msg = {
+                  type : 'register_user',
+                  user_id : <?= $logged_user->id?>
+              }
+              conn.send(JSON.stringify(msg))
+          };
+        <?php }?>
   </script>
+
   </body>
 </html>

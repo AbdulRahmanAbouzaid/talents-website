@@ -104,10 +104,68 @@ class User extends Model{
 
 
 
+    public function messagesWith($other_side)
+    {
+        $sql = "select * from messages ";
+        $sql .= "where(sent_to = {$this->id} OR sent_from = {$this->id}) ";
+        $sql .= " and (sent_to = {$other_side->id} OR sent_from = {$other_side->id})";
+
+        $statement = self::getBuilder()->prepareStatemnt($sql);
+        $statement->execute();
+
+		return $statement->fetchAll(PDO::FETCH_CLASS, 'Message');
+    }
+
+
+
+
+
     public function chats()
     {
-        return Message::whereOr('sent_to = '.$this->id, 'sent_from = '.$this->id);
+        $sql = "select * from chats";
+        $sql .= " where first_side = {$this->id} OR second_side = {$this->id}";
+        $sql .= " ORDER BY updated_at DESC";
+        $statement = self::getBuilder()->prepareStatemnt($sql);
+        $statement->execute();
+
+		return $statement->fetchAll(PDO::FETCH_CLASS);
     }
+
+
+
+
+
+
+
+    function recentChatWith() {
+        $chats = $this->chats();
+        
+        $other_sides = [];
+        foreach($chats as $chat){
+            if($chat->first_side == $this->id){
+                $other_sides[] = User::find($chat->second_side); 
+            }else{
+                $other_sides[] = User::find($chat->first_side); 
+            }
+        }
+
+        return $other_sides;
+    }
+
+
+
+
+
+    public function msgNotifications()
+    {
+        $sql = "select * from notifications";
+        $sql .= " where sent_to = {$this->id} AND is_read = 0";
+        $statement = self::getBuilder()->prepareStatemnt($sql);
+        $statement->execute();
+
+		return $statement->fetchAll(PDO::FETCH_CLASS);
+    }
+    
 
 
 }

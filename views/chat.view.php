@@ -1,18 +1,14 @@
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->
-
-
-<html>
-<head>
-
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" type="text/css" rel="stylesheet">
-
-</head>
-<body>
+<?php 
+  $title = 'Chat';
+  include 'layout/header.view.php';
+  $chat->markAsRead();
+?>
 <style>
-.container{max-width:1170px; margin:auto;}
+.chat-container{
+  max-width:1170px;
+  margin:20px auto 20px auto;
+  /* margin-bottom:20px; */
+}
 img{ max-width:100%;}
 .inbox_people {
   background: #f8f8f8 none repeat scroll 0 0;
@@ -24,6 +20,7 @@ img{ max-width:100%;}
   border: 1px solid #c4c4c4;
   clear: both;
   overflow: hidden;
+  background: #f8f8f8 none repeat scroll 0 0;
 }
 .top_spac{ margin: 20px 0 0;}
 
@@ -69,6 +66,8 @@ img{ max-width:100%;}
   border-bottom: 1px solid #c4c4c4;
   margin: 0;
   padding: 18px 16px 10px;
+  cursor: pointer;
+  
 }
 .inbox_chat { height: 550px; overflow-y: scroll;}
 
@@ -148,8 +147,7 @@ img{ max-width:100%;}
   overflow-y: auto;
 }
 </style>
-<div class="container">
-<h3 class=" text-center">You are <?=$user->full_name?></h3>
+<div class="chat-container">
 <div class="messaging">
       <div class="inbox_msg">
         <div class="inbox_people">
@@ -160,33 +158,35 @@ img{ max-width:100%;}
            
           </div>
           <div class="inbox_chat">
-            <div class="chat_list active_chat">
-              <div class="chat_people">
-                <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
-                <div class="chat_ib">
-                  <h5>Sunil Rajput <span class="chat_date">Dec 25</span></h5>
-                  <p>Test, which is a new approach to have all solutions 
-                    astrology under one roof.</p>
+            <?php foreach($others as $user){ ?>
+              <a style="display:block" href="/chat?other_id=<?=$user->id?>">
+                <div class="chat_list <?=$user->id == $chat_with->id ? 'active_chat' : ''?>">
+                  <div class="chat_people">
+                      <?php $src = $user->photo ? 'data:image/png;base64,'.base64_encode($user->photo) : '/public/img/profile.jpeg'?>
+                      <div class="chat_img"> <img src="<?=$src?>"> </div>
+                      <div class="chat_ib">
+                        <h5><?=$user->full_name?> <span class="chat_date">16 Oct</span></h5>
+                      </div>
+                  </div>
                 </div>
-              </div>
-            </div>
-            
+              </a>
+            <?php } ?>
           </div>
         </div>
         <div class="mesgs">
           <div class="msg_history">
             <?php 
-                foreach($chats as $chat){
-                    if($chat->sent_to == $user->id) {
+                foreach($messages as $message){
+                    if($message->sent_from == $current_user->id) {
             ?>
                     <div class="outgoing_msg">
-                        <div class="sent_msg"><p><?=$chat->body?></p><span class="time_date"> 11:01 AM    |    June 9</span> </div>
+                        <div class="sent_msg"><p><?=$message->body?></p><span class="time_date"> 11:01 AM    |    June 9</span> </div>
                     </div>      
             <?php } else {?>
 
                         <div class="incoming_msg">
-                            <div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
-                            <div class="received_msg"><div class="received_withd_msg"><p><?=$chat->body?></p><span class="time_date"> 11:01 AM    |    June 9</span></div>
+                            <div class="incoming_msg_img"> <img src="/public/img/profile.jpeg" alt="sunil"> </div>
+                            <div class="received_msg"><div class="received_withd_msg"><p><?=$message->body?></p><span class="time_date"> 11:01 AM    |    June 9</span></div>
                             </div>
                         </div>
 
@@ -198,7 +198,7 @@ img{ max-width:100%;}
           <div class="type_msg">
             <div class="input_msg_write">
               <input type="text" class="write_msg" placeholder="Type a message" />
-              <button class="msg_send_btn" type="button" onclick="sendMsg()"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
+              <button class="msg_send_btn" type="button" onclick="sendMsg()"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
             </div>
           </div>
         </div>
@@ -207,36 +207,29 @@ img{ max-width:100%;}
       
     </div></div>
 
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" type="text/css" rel="stylesheet">    
+    <?php include 'layout/footer.view.php'; ?>    
+    
+    
     <script>
-        var conn = new WebSocket('ws://localhost:8080');
-        conn.onmessage = function(e){
-            $('.msg_history').append('<div class="incoming_msg"><div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div><div class="received_msg"><div class="received_withd_msg"><p>' + e.data + '</p><span class="time_date"> 11:01 AM    |    June 9</span></div></div></div>');
-        };
-
-        conn.onopen = function(){
-            var msg = {
-                type : 'register_user',
-                user_id : <?= $user->id?>
-            }
-            conn.send(JSON.stringify(msg))
-        };
-
+        $(document).ready(function() {
+          $(".msg_history").scrollTop($(".msg_history")[0].scrollHeight);          
+        });
 
         function sendMsg() {
             var message =  $('.write_msg').val();
             var msg = { 
                 text : message,
                 type : 'message',
-                from : <?= $user->id?>,
-                to : <?= $user->id == 15 ? 19 : 15?>
+                from : <?= $current_user->id?>,
+                to : <?= $chat_with->id?>
             };
 
             conn.send(JSON.stringify(msg));
             
             $('.msg_history').append('<div class="outgoing_msg"><div class="sent_msg"><p>'+message+'</p><span class="time_date"> 11:01 AM    |    June 9</span> </div></div>');
+            $(".msg_history").scrollTop($(".msg_history")[0].scrollHeight);            
             $('.write_msg').val('');
         }
 
     </script>
-    </body>
-    </html>
