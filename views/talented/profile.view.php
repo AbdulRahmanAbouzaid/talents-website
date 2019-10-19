@@ -65,7 +65,7 @@
             <?php } ?>
             
             <?php foreach ($materials as $material) { ?>
-                <div class="card  mt-3" >
+                <div class="card  mt-3" id="<?=$material->id?>">
                     <div class="card-header bg-light-coral">
                         <img src="<?=$src?>" class="img-profile-post float-left" alt="">
                         <span class=" float-left ml-3 name-post "><?= $user->full_name?></span>
@@ -120,23 +120,23 @@
                                   <button class=" btn my-1  cLH " id="commentbtn1" onclick="comment(this)">Comment</button>
                                 </div>
                                 
-                                <div class="py-1 displayNO" id="commentArea" style="border-top : solid 1px #bfb8b9">
-                                    <form action="/material/add-comment" method="POST">
-                                      <div class="container">
-                                        <div class="row" >
-                                          <input type="hidden" name="material_id" value="<?=$material->id?>">
-                                          <textarea class="d-block input-font-style" name="body"></textarea>
-                                          <button class="btn cLH" id="commentbtn1"><i class="fas fa-comment-dots"></i></button>
-                                        </div>  
-                                      </div>
-                                    </form>     
+                                <div class="py-1 displayNO" id="commentArea" style="border-top : solid 1px #bfb8b9">  
+                                  <div class="container">
+                                    <div class="row" >
+                                      <input type="hidden" name="material_id" id="material_id" value="<?=$material->id?>">
+                                      <textarea class="d-block input-font-style" name="body" id="comment-body"></textarea>
+                                      <small style="display:none;" class="body-error"></small>
+                                      <button class="btn cLH" id="commentbtn1" onclick="addComment()"><i class="fas fa-comment-dots"></i></button>
+                                    </div>  
+                                  </div>
+                                       
                                 </div>
                               <?php } ?>
                             </div>
                             <?php foreach($material->comments() as $comment){?>
-                              <div  style="border-top : solid 1px #bfb8b9" >
+                              <div  style="border-top : solid 1px #bfb8b9" class="material-comments">
                                 <div class="my-1" data-id="<?=$comment->id?>">
-                                  <?php if($logged_user->id == $user->id) { ?>
+                                  <?php if($logged_user->id == $comment->user_id) { ?>
                                     <div class="btn-group float-right">
                                       <button type="button" class="btn" id="dropdownMenuReference" data-toggle="dropdown" aria-haspopup="true"
                                         aria-expanded="false" data-reference="parent">
@@ -176,5 +176,49 @@
 <?php 
     include($_SERVER['DOCUMENT_ROOT'].'/views/layout/footer.view.php');
 ?>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="/public/js/talendWall.js"></script>
+
+  <script>
+    // function sendNotification() {
+    //   console.log('here');
+      
+
+    //   return false; // return false to cancel form action
+    // }
+
+    function addComment(e) {
+      var material_id = $('#material_id').val();
+      var body = $('#comment-body').val();
+      console.log(body);
+      if (!$.trim(body)) {
+        $('.body-error').html('Body cannot be empty!');
+      }
+      $.ajax
+      ({ 
+          url: '/material/add-comment',
+          data: {"material_id": material_id, "body": body},
+          type: 'post',
+          success: function(result)
+          {
+            <?php if($logged_user->id != $user->id){?>
+              var msg = { 
+                  text : '<?= $logged_user->full_name?>  Add comment to your post',
+                  type : 'comment',
+                  from : <?= $logged_user->id?>,
+                  to : <?= $user->id ?>,
+                  relatedId : material_id
+              };
+              conn.send(JSON.stringify(msg));
+
+            <?php } ?>
+
+            location.reload();
+          },
+          error: function() {
+              alert('Some Error');
+          }
+      });
+    }
+  </script>

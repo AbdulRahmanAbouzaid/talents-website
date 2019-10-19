@@ -46,7 +46,7 @@ class MaterialController extends Controller {
         Material::update($material->id, [
             'comments' => $material->comments + 1
         ]);
-        return $this->redirectTo($_SERVER['HTTP_REFERER']);
+        // return $this->redirectTo($_SERVER['HTTP_REFERER']);
     }
 
 

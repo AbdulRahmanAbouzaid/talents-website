@@ -49,7 +49,7 @@ Class Model {
         $table = self::getTable($model);
 
         
-        $order_by = $latest ? 'ORDER BY created_at DESC' : '';
+        $order_by = $latest ? 'ORDER BY created_at DESC' : 'ORDER BY created_at ASC';
         
         $statement = self::getBuilder()->prepareStatemnt("select * from " . $table ." where `" . $key . "` {$operator} '{$value}' {$order_by}");
 		$statement->execute();

@@ -9,6 +9,9 @@ class UsersController extends Controller{
         $user = User::find($_GET['id']);
         if($user->isTalented()){
             $materials = $user->getTalented()->getMaterials();
+            if(isset($_GET['notification_id'])){
+                Notification::find($_GET['notification_id'])->markCommentAsRead();
+            }
             require 'views/talented/profile.view.php';
         }elseif($user->isOrganization()){
             $talents = TalentType::selectAll();

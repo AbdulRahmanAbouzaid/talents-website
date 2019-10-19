@@ -37,17 +37,23 @@ class ServerSocket implements MessageComponentInterface {
             $chat->addMessage($recData);
             $recData['content'] = '/chat?other_id='.$recData['from'];
             $notification_id = Notification::create($recData);
-            $content = $message . ';delimeter;' . $recData['from'] . ';delimeter;' . $notification_id;
+            $content = $message . ';delimeter;' . $recData['from'] . ';delimeter;' . $notification_id . ';delimeter;%'.$recData['type'].'%';
             foreach($this->clients as $client){
                 if($client->resourceId == $this->activeUsers[$recData['to']]){
                     $client->send($content);
                 }
             }
             
-        }elseif($recData['type'] == 'notification'){
+        }elseif($recData['type'] == 'comment'){
             $message = $recData['text'];
-            Notification::create($recData);
-            $content = $message . ';from_id=' . $recData['from'];
+            $recData['content'] = $recData['text'];
+            $notification_id = Notification::create($recData);
+            $content = $message . ';delimeter;' . $recData['to'] . ';delimeter;' . $notification_id . ';delimeter;%'.$recData['type'].'%;delimeter;' . $recData['relatedId'];
+            foreach($this->clients as $client){
+                if($client->resourceId == $this->activeUsers[$recData['to']]){
+                    $client->send($content);
+                }
+            }
         }
 
         

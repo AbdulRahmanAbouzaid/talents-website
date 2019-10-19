@@ -159,7 +159,21 @@ class User extends Model{
     public function msgNotifications()
     {
         $sql = "select * from notifications";
-        $sql .= " where sent_to = {$this->id} AND is_read = 0";
+        $sql .= " where sent_to = {$this->id} AND type = 2 AND is_read = 0";
+        $statement = self::getBuilder()->prepareStatemnt($sql);
+        $statement->execute();
+
+		return $statement->fetchAll(PDO::FETCH_CLASS);
+    }
+
+
+
+
+
+    public function commentNotifications()
+    {
+        $sql = "select * from notifications";
+        $sql .= " where sent_to = {$this->id} AND type = 3 AND is_read = 0";
         $statement = self::getBuilder()->prepareStatemnt($sql);
         $statement->execute();
 

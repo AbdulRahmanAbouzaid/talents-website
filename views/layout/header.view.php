@@ -76,38 +76,53 @@
               <a class="nav-link <?= $login ? 'active' : ''?>" href="/login">Login</a>
             </li>
           <?php } else {?>
-            <li class="nav-item active px-2 ">
+            <li class="nav-item nav-icon active px-2 ">
               <a class="nav-link py-0 my-0" href="#" ><i class="fas fa-home"></i></a>
             </li>
-            <li class="nav-item dropdown px-2">
-              <a class="nav-link  py-0 my-0" href="#" id="Message" role="button" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false">
-                <i class="far fa-envelope" style="position: relative; "></i>
-                <?php 
-                  $msgNotifications = $logged_user->msgNotifications(); 
-                  $count = count($msgNotifications);
-                ?>
-                <span class="notification-label msg-notify"><?=$count?></span>
-              </a>
-              <div class="dropdown-menu msg-dropdown" aria-labelledby="Message">
-                <?php foreach ($msgNotifications as $notification) { ?>
-                  <a class="dropdown-item" href="<?=$notification->content . '&notification_id='.$notification->id?>">You have new message</a>
-                  <?= $count > 1 ? '<div class="dropdown-divider"></div>' : '' ?>
-                <?php } ?>
-              </div>
-            </li>
-            <li class="nav-item dropdown px-2 ">
+            <?php if($logged_user->isTalented() || $logged_user->isVisitor()){?>
+              <li class="nav-item nav-icon dropdown px-2">
+                <a class="nav-link  py-0 my-0" href="#" id="Message" role="button" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false">
+                  <i class="far fa-envelope" style="position: relative; "></i>
+                  <?php 
+                    $msgNotifications = $logged_user->msgNotifications(); 
+                    $count = count($msgNotifications);
+                  ?>
+                  <span class="notification-label msg-notify"><?=$count?></span>
+                </a>
+                <div class="dropdown-menu msg-dropdown" aria-labelledby="Message">
+                  <?php if( $count < 1){?>
+                    <a class="dropdown-item" href="">No New Messages</a>
+                    <div class="dropdown-divider"></div>                  
+                  <?php }else{
+                    foreach ($msgNotifications as $notification) { ?>
+                    <a class="dropdown-item" href="<?=$notification->content . '&notification_id='.$notification->id?>">You have new message</a>
+                    <div class="dropdown-divider"></div>
+                  <?php }} ?>
+                  <a class="dropdown-item" href="/chat">View All</a>
+                </div>
+              </li>
+            <?php } ?>
+            <li class="nav-item nav-icon dropdown px-2 ">
               <a class="nav-link  py-0 my-0" href="#" id="Notification" role="button" data-toggle="dropdown" aria-haspopup="true"
                 aria-expanded="false">
+                <?php 
+                    $commentNotifications = $logged_user->commentNotifications(); 
+                    $notif_count = count($commentNotifications);
+                  ?>
                 <i class="far fa-bell" style="position: relative;"></i>
-                <span class="notification-label">3</span>
+                <span class="notification-label notification-count"><?=$notif_count?></span>
               </a>
-              <div class="dropdown-menu" aria-labelledby="Notification">
-                <a class="dropdown-item" href="#">View profile</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Edite Profile</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Log out</a>
+              <div class="dropdown-menu notify-dropdown" aria-labelledby="Notification">
+                <?php if( $notif_count < 1){?>
+                    <a class="dropdown-item" href="">All is Read</a>             
+                  <?php }else{ ?>
+                <?php foreach ($commentNotifications as $notification) { ?>
+                  <a class="dropdown-item" href="/profile?id=<?=$logged_user->id?>&notification_id=<?=$notification->id?>#<?=$notification->related_element_id?>">
+                    <?=$notification->content?>
+                  </a>
+                  <?= $notif_count > 1 ? '<div class="dropdown-divider"></div>' : '' ?>
+                <?php } }?>
               </div>
             </li>
             <li class="nav-item dropdown px-3">
