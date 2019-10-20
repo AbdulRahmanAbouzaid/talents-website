@@ -21,3 +21,11 @@
 </ul>
 </li>
 </ul>
+
+<h2> To Run Chat and notification server </h2>
+<ul>
+  <li> open new cmd window and Go to the project directory </li>
+  <li> run "composer update" </li>
+  <li> run "composer dump-autoload" </li>
+  <li> run "php websocket-server.php" </li>
+</ul>
