@@ -19,17 +19,20 @@ $router->post('talented/update-profile', 'TalentedController@updateProfile');
 $router->post('organization/update-profile', 'OrganizationsController@updateProfile');
 
 
-$router->post('add-material', 'TalentedController@addMaterial');
 $router->post('add-event', 'OrganizationsController@addEvent');
+$router->get('event/delete', 'EventController@delete');
+$router->post('event/update', 'EventController@update');
 
 
 $router->get('talented', 'TalentedController@getTalentedOf');
 $router->get('organizations', 'OrganizationsController@getEventsOf');
 
- $router->post('change-picture', 'UsersController@changeProfileImage');
+$router->post('change-picture', 'UsersController@changeProfileImage');
 
+$router->post('add-material', 'TalentedController@addMaterial');
 $router->post('material/like', 'MaterialController@like');
 $router->get('material/unlike', 'MaterialController@unlike');
 $router->post('material/add-comment', 'MaterialController@addComment');
 $router->get('material/delete-comment', 'MaterialController@deleteComment');
 $router->get('material/delete', 'MaterialController@deleteMaterial');
+$router->post('material/update', 'MaterialController@updateMaterial');

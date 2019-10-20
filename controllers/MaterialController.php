@@ -67,6 +67,20 @@ class MaterialController extends Controller {
 
     public function deleteMaterial()
     {
+        $material = Material::find($_GET['id']);
         Material::delete($_GET['id']);
+        $material->deleteComments();
+        $material->deleteLikes();
+
+    }
+
+
+
+
+    public function updateMaterial()
+    {
+        Material::update($_POST['material_id'], [
+            'body' => $_POST['body']
+        ]);
     }
 }

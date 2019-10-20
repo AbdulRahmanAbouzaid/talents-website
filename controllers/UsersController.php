@@ -45,7 +45,7 @@ class UsersController extends Controller{
 
 
 
-    public function updateProfile(Type $var = null)
+    public function updateProfile()
     {
         $this->validate($_POST, [
             'name' => 'required',

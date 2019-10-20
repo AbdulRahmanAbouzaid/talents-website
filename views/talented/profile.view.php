@@ -9,7 +9,7 @@
           <div class="col-md-3 my-3 text-center"  id="profileImage">
             <div class="row">
               <div class="col-md-12">
-                <?php $src = $user->photo ? 'data:image/png;base64,'.base64_encode($user->photo) : '/public/img/profile.jpeg'?>
+                <?php $src = $user->photo ? 'data:image/png;base64,'.base64_encode($user->photo) : '/public/img/profile.png'?>
                 <img src="<?=$src?>" class="img-profile" alt="">
               </div>
             </div>
@@ -77,8 +77,8 @@
                             </button>
                             
                             <div class=" dropdown-menu" aria-labelledby="dropdownMenuReference" data-id="<?= $material->id?>">
-                              <a class="dropdown-item text-center m-0 p-0" onclick="removePost(this)" style="border-bottom:solid 1px #46393b" > Delete</a>
-                              <a class="dropdown-item text-center m-0 p-0"> Edit</a>
+                              <a class="dropdown-item text-center m-0 p-0" onclick="editPost(this)" style="border-bottom:solid 1px #46393b" > Edit</a>
+                              <a class="dropdown-item text-center m-0 p-0" onclick="removePost(this)"> Delete</a>
                             </div> 
                           </div>
                         <?php } ?>
@@ -88,11 +88,20 @@
                             <div class="row">
                                 <div class="col-md-12">
                                 <div class="card-body post-body">
+                                    <div class="mb-2 displayNO insertPic">
+                                      <span class="font-design">Insert Img</span>
+                                      <input class="inputImage" type="file" name="pic" accept="image/*" value="Insert photo">
+                                    </div>
                                     <p class="card-text " style="font-family: 'Chilanka', cursive; font-size:15px">
                                         <?= $material->body ?>
                                     </p>
+                                    <div class="editSection m-0 p-1 displayNO " style="border: 1px solid #46393b" data-id="<?= $material->id?>">
+                                      <textarea type="text" value="" name="" id="updated-body<?=$material->id?>"  class="d-block input-font-style height-input-font-style"></textarea>
+                                      <button class="btn cLH mt-2 btn-sm" style="border: 1px solid #46393b" onclick="updatePost(this)"> Save</button>
+                                      <button class="btn cLH mt-2 btn-sm" style="border: 1px solid #46393b" onclick="cancelUpdate()"> Cancle</button>
+                                    </div>
                                 </div>
-                                <img src="/public/uploads/materials/<?=$material->media?>" class=" card-img"  alt="">
+                                <img src="<?= isset($material->media) ? '/public/uploads/materials/'.$material->media : '' ?>" class=" card-img"  alt="">
                                 </div>
                             </div>
                             <!-- start of comment area -->

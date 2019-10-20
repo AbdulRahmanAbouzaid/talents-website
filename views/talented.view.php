@@ -10,7 +10,7 @@ include 'layout/header.view.php';
 			<div class="card 1">
 				<?php
 					$user = $talented->user();
-					$src = $user->photo ? 'data:image/png;base64,'.base64_encode($user->photo) : '/public/img/profile.jpeg'
+					$src = $user->photo ? 'data:image/png;base64,'.base64_encode($user->photo) : '/public/img/profile.png'
 				?>
 				<div class="card_image"> <img src="<?=$src?>" /> </div>
 				<div class="card_title title-white">

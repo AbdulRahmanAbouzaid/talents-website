@@ -162,7 +162,7 @@ img{ max-width:100%;}
               <a style="display:block" href="/chat?other_id=<?=$user->id?>">
                 <div class="chat_list <?=$user->id == $chat_with->id ? 'active_chat' : ''?>">
                   <div class="chat_people">
-                      <?php $src = $user->photo ? 'data:image/png;base64,'.base64_encode($user->photo) : '/public/img/profile.jpeg'?>
+                      <?php $src = $user->photo ? 'data:image/png;base64,'.base64_encode($user->photo) : '/public/img/profile.png'?>
                       <div class="chat_img"> <img src="<?=$src?>"> </div>
                       <div class="chat_ib">
                         <h5><?=$user->full_name?> <span class="chat_date">16 Oct</span></h5>
@@ -185,7 +185,7 @@ img{ max-width:100%;}
             <?php } else {?>
 
                         <div class="incoming_msg">
-                            <div class="incoming_msg_img"> <img src="/public/img/profile.jpeg" alt="sunil"> </div>
+                            <div class="incoming_msg_img"> <img src="/public/img/profile.png" alt="sunil"> </div>
                             <div class="received_msg"><div class="received_withd_msg"><p><?=$message->body?></p><span class="time_date"> 11:01 AM    |    June 9</span></div>
                             </div>
                         </div>

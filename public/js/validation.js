@@ -13,7 +13,7 @@ document
 
 // Name Validation
 function nameV() {
-  if (name.value == null || name.value == "" || name.value.length < 4) {
+  if (name.value == null || name.value == "" || name.value.length < 5) {
     document.querySelector("#nameHelp").textContent =
       "You should enter your Name";
     document.querySelector("#nameHelp").classList.add("important");
@@ -32,9 +32,9 @@ function userV() {
     document.querySelector("#userNameHelp").textContent =
       "please enter your User name.";
     document.querySelector("#userNameHelp").classList.add("important");
-  } else if (userName.value.length < 4 || userName.value.length > 15) {
+  } else if (userName.value.length < 5 || userName.value.length > 15) {
     document.querySelector("#userNameHelp").textContent =
-      "User name min 4 charachter , max 15 charachter";
+      "User name min 5 charachter , max 15 charachter";
     document.querySelector("#userNameHelp").classList.add("important");
   }
 }
@@ -74,41 +74,35 @@ function defultemail() {
 //Password Validation
 
 let password2 = password.value;
-let userName2 = userName.value
-let confirmPassword2 = confirmPassword.value
+let userName2 = userName.value;
+let confirmPassword2 = confirmPassword.value;
 
 function passwordV() {
-  let re1 = /[0-9]/;    
-      re2 = /[a-z]/;
-      re3 = /[A-Z]/;
+  let re1 = /[0-9]/;
+  re2 = /[a-z]/;
+  re3 = /[A-Z]/;
 
-
-  if (password.value == null || password.value =="") {
+  if (password.value == null || password.value == "") {
     document.querySelector("#passwordHelp").textContent =
       "Error: Password must be rigtten!";
     document.querySelector("#passwordHelp").classList.add("important");
-  }
-  else if (password.value.length < 6) {
+  } else if (password.value.length < 6) {
     document.querySelector("#passwordHelp").textContent =
       "Error: Password must contain at least six characters!";
     document.querySelector("#passwordHelp").classList.add("important");
-  }
-  else if (password.value == userName2) {
+  } else if (password.value == userName2) {
     document.querySelector("#passwordHelp").textContent =
       "Error: Password must be different from Username!";
     document.querySelector("#passwordHelp").classList.add("important");
-  }
-  else if (!re1.test(password.value)) {
+  } else if (!re1.test(password.value)) {
     document.querySelector("#passwordHelp").textContent =
       "Error: password must contain at least one number (0-9)!";
     document.querySelector("#passwordHelp").classList.add("important");
-  }
-  else if (!re2.test(password.value)) {
+  } else if (!re2.test(password.value)) {
     document.querySelector("#passwordHelp").textContent =
       "Error: password must contain at least one lowercase letter (a-z)!";
     document.querySelector("#passwordHelp").classList.add("important");
-  }
-  else if (!re3.test(password.value)) {
+  } else if (!re3.test(password.value)) {
     document.querySelector("#passwordHelp").textContent =
       "Error: password must contain at least one uppercase letter (A-Z)!";
     document.querySelector("#passwordHelp").classList.add("important");
@@ -116,21 +110,19 @@ function passwordV() {
 }
 
 function defultpassword() {
-  document.querySelector("#passwordHelp").textContent =
-    "Enter your password";
+  document.querySelector("#passwordHelp").textContent = "Enter your password";
   document.querySelector("#passwordHelp").classList.remove("important");
 }
 
-
-function passwordVC(){
-  if (confirmPassword2 == password2 ){
+function passwordVC() {
+  if (confirmPassword2 == password2) {
     document.querySelector("#passwordConfirmHelp").textContent =
       "Thanks for confirming your password";
-    document.querySelector("#passwordConfirmHelp").classList.add("right")
-    } else if (!confirmPassword2 == password2 ) {
+    document.querySelector("#passwordConfirmHelp").classList.add("right");
+  } else if (!confirmPassword2 == password2) {
     document.querySelector("#passwordConfirmHelp").textContent =
       "Must be the same password";
-    document.querySelector("#passwordConfirmHelp").classList.add("important")
+    document.querySelector("#passwordConfirmHelp").classList.add("important");
   }
 }
 
@@ -142,20 +134,20 @@ function defultpasswordC() {
 
 //Talend Drop Down
 function talendM() {
-  let mmm = document.getElementById('careerM')
-  let a = mmm.selectedIndex
+  let mmm = document.getElementById("careerM");
+  let a = mmm.selectedIndex;
 
-  let bbb = document.getElementById('talendMenue')
+  let bbb = document.getElementById("talendMenue");
 
-  if (mmm.options[a].value==2){
+  if (mmm.options[a].value == 2) {
     bbb.classList.remove("displayNO");
-    
-  }
-  else if (mmm.options[a].value == 1||mmm.options[a].value == 3 || mmm.options[a].value== 4){
+  } else if (
+    mmm.options[a].value == 1 ||
+    mmm.options[a].value == 3 ||
+    mmm.options[a].value == 4
+  ) {
     bbb.classList.add("displayNO");
   }
 }
 
-
-// POST Area Show 
-
+// POST Area Show

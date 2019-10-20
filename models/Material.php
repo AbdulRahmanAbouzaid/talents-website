@@ -51,4 +51,24 @@ class Material extends Model {
     }
 
 
+
+
+    public function deleteComments()
+    {
+        $sql = "delete from comments where material_id = {$this->id}";
+        $statement = self::getBuilder()->prepareStatemnt($sql);
+		$statement->execute();
+    }
+
+
+
+
+    public function deleteLikes(Type $var = null)
+    {
+        $sql = "delete from likes where material_id = {$this->id}";
+        $statement = self::getBuilder()->prepareStatemnt($sql);
+		$statement->execute();
+    }
+
+
 }

@@ -121,15 +121,6 @@
   padding: 5px
 }
 
-.input-font-style{
-  font-size: 20px ;
-  font-weight: 400px;
-  width: 90%;
-  height: 80px;
-  overflow:visible;
-  font-family: 'Chilanka', cursive;
-}
-
 
 .field-icon {
   float: right;
@@ -209,4 +200,44 @@
 
 .nav-icon {
   font-size: x-large;
+}
+
+
+.input-font-style {
+  line-height: 16px;
+  padding: 15px 15px;
+  background: #ececec;
+  font-size: 17px;
+  flex: 1 1 auto;
+  color: #1c1e21;
+  cursor: text;
+  border: none;
+  width: 100%;
+}
+
+.height-input-font-style {
+  height: 170px;
+} 
+
+
+.delet-label {
+  text-align: center;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  color: #fff;
+  font-size: 1.5rem;
+  background: gray;
+}
+
+
+
+
+
+.event-dots {
+  margin-left: 30px;
+  margin-top: 8px;
 }
