@@ -111,6 +111,18 @@ Class Model {
 
 
 
+
+    public static function deleteWhere($column, $value)
+    {
+        $model = get_called_class();
+        $table = self::getTable($model);
+        $sql = 'DELETE FROM ' . $table . ' where ' . $column . '= ' . $value;
+        $statement = self::getBuilder()->prepareStatemnt($sql);
+		$statement->execute();
+    }
+
+
+
     public function insertInto($table, $data)
     {
         $pdo = self::getBuilder()->getPDO();

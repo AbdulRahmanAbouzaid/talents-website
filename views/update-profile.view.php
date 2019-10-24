@@ -129,6 +129,13 @@
                         </div>
                         </form>
 
+                        <a class="btn btn-danger float-left" href="#" data-href="/user/delete?id=<?=$logged_user->id?>" data-toggle="modal" data-target="#confirm-delete">Delete Account</a>
+                        <?php
+                            $modal_title = "Delete Account";
+                            $modal_body = $logged_user->full_name . ", Note that your Account will be deleted permenantely";
+                            include($_SERVER['DOCUMENT_ROOT'].'/views/layout/delete-modal.view.php');
+                        ?>
+                        
                     </div>
             </div>
         </div>
@@ -150,4 +157,10 @@
             reader.readAsDataURL(input.files[0]);
         }
     }
+
+    $('#confirm-delete').on('show.bs.modal', function(e) {
+        $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
+    });
+
 </script>
+

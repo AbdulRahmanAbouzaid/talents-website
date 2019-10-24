@@ -181,5 +181,19 @@ class User extends Model{
     }
     
 
+    
 
+    public function deleteAll()
+    {
+        Message::deleteMsgOf($this->id);
+        Chat::deleteChatsOf($this->id);
+        Comment::deleteWhere('user_id', $this->id);
+        self::getBuilder()->prepareStatemnt('delete from likes where user_id ='. $this->id)->execute();
+        if($this->isTalented()){
+            Talented::deleteWhere('user_id', $this->id);
+        }elseif($this->isOrganization()){
+            Organization::deleteWhere('user_id', $this->id);
+        }
+
+    }
 }

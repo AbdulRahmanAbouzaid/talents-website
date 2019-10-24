@@ -29,4 +29,14 @@ class Message extends Model {
         $statement = self::getBuilder()->prepareStatemnt($sql);
 		$statement->execute();
     }
+
+
+
+    public static function deleteMsgOf($user_id)
+    {
+        $sql = "delete from messages where sent_from = '{$user_id}' or sent_to = '{$user_id}'";
+
+        $statement = self::getBuilder()->prepareStatemnt($sql);
+		$statement->execute();
+    }
 }

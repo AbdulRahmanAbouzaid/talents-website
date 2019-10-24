@@ -15,6 +15,7 @@ $router->get('logout', 'AuthController@logout');
 $router->get('profile', 'UsersController@index');
 $router->get('user/update-profile', 'UsersController@showUpdateForm');
 $router->post('user/update-profile', 'UsersController@updateProfile');
+$router->get('user/delete', 'UsersController@deleteAccount');
 $router->post('talented/update-profile', 'TalentedController@updateProfile');
 $router->post('organization/update-profile', 'OrganizationsController@updateProfile');
 

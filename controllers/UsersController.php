@@ -85,4 +85,15 @@ class UsersController extends Controller{
         return $this->redirectTo('/profile?id='.$user->id);
         
     }
+
+
+
+
+
+    public function deleteAccount()
+    {
+        User::find($_GET['id'])->deleteAll();
+        User::delete($_GET['id']);
+        return $this->redirectTo('/logout');
+    }
 }

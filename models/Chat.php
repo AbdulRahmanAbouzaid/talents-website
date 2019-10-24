@@ -85,4 +85,16 @@ class Chat extends Model {
 		$statement->execute();
     }
 
+
+
+
+    public static function deleteChatsOf($user_id)
+    {
+        $sql = "delete from chats where first_side = {$user_id}";
+        $sql .= " or second_side = {$user_id}";
+
+        $statement = self::getBuilder()->prepareStatemnt($sql);
+		$statement->execute();
+    }
+
 }

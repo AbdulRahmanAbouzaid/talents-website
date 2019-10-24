@@ -18,6 +18,11 @@
                 <p  class=" my-auto name-font-design"><?= $user->full_name?></p>
               </div>
             </div>
+            <?php if($logged_user->id != $user->id) {?>
+              <div style="margin-top:10px">
+                <a class="btn btn-success" href="/chat?other_id=<?=$user->id?>"><i class="fa fa-paper-plane" aria-hidden="true"></i> Send a Message</a>
+              </div>
+            <?php } ?>
 
           </div>
           <div class="col-md-8 " id="posts">
