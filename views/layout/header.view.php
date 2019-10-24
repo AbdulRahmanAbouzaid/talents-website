@@ -92,7 +92,7 @@
                 </a>
                 <div class="dropdown-menu msg-dropdown" aria-labelledby="Message">
                   <?php if( $count < 1){?>
-                    <a class="dropdown-item" href="">No New Messages</a>
+                    <p class="dropdown-item no-msg">No New Messages</p>
                     <div class="dropdown-divider"></div>                  
                   <?php }else{
                     foreach ($msgNotifications as $notification) { ?>
@@ -115,8 +115,8 @@
               </a>
               <div class="dropdown-menu notify-dropdown" aria-labelledby="Notification">
                 <?php if( $notif_count < 1){?>
-                    <a class="dropdown-item" href="">All is Read</a>             
-                  <?php }else{ ?>
+                    <p class="dropdown-item no-notifications">All is Read</p>             
+                <?php }else{ ?>
                 <?php foreach ($commentNotifications as $notification) { ?>
                   <a class="dropdown-item" href="/profile?id=<?=$logged_user->id?>&notification_id=<?=$notification->id?>#<?=$notification->related_element_id?>">
                     <?=$notification->content?>
