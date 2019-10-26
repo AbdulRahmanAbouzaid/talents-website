@@ -5,6 +5,7 @@ class PagesController extends Controller
 	public function home()
 	{
 		$talents = TalentType::selectAll();
+		$events = Event::getLatest();
 		require 'views/index.view.php';
 	}
 
