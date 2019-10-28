@@ -37,3 +37,15 @@ $router->post('material/add-comment', 'MaterialController@addComment');
 $router->get('material/delete-comment', 'MaterialController@deleteComment');
 $router->get('material/delete', 'MaterialController@deleteMaterial');
 $router->post('material/update', 'MaterialController@updateMaterial');
+
+
+// admin panel routes
+$router->get('admin/home', 'AdminController@index');
+$router->get('admin/users', 'AdminController@viewAllUsers');
+$router->post('admin/users/create', 'AdminController@createUser');
+$router->post('admin/users/update', 'AdminController@updateUser');
+$router->get('admin/users/delete', 'AdminController@deleteUser');
+$router->get('admin/users/talented', 'AdminController@viewTalented');
+$router->get('admin/users/organizations', 'AdminController@viewOrganizations');
+$router->get('admin/users/visitors', 'AdminController@viewVisitors');
+$router->get('admin/materials', 'AdminController@viewMaterials');

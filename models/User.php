@@ -7,10 +7,10 @@ class User extends Model{
 
 
     public static $user_types = [
-        1 => 'admin',
-        2 => 'talented',
-        3 => 'organization',
-        4 => 'visitor'
+        1 => 'Admin',
+        2 => 'Talented',
+        3 => 'Organization',
+        4 => 'Visitor'
     ];
 
 
@@ -195,5 +195,18 @@ class User extends Model{
             Organization::deleteWhere('user_id', $this->id);
         }
 
+    }
+
+
+
+
+    public function getVisitorLikes()
+    {
+        $sql = "select * from likes";
+        $sql .= " where user_id = " . $this->id;
+        $statement = self::getBuilder()->prepareStatemnt($sql);
+        $statement->execute();
+
+		return $statement->fetchAll(PDO::FETCH_CLASS);
     }
 }

@@ -71,4 +71,12 @@ class Material extends Model {
     }
 
 
+
+
+    public function user()
+    {
+        return Talented::find($this->talented_id)->user();
+    }
+
+
 }

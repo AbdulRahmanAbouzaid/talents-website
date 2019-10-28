@@ -15,12 +15,14 @@ Class Model {
     }
 
 
-    public static function selectAll($opations = [])
+    public static function selectAll($options = [])
 	{
         $model = get_called_class();
         $table = self::getTable($model);
 
-		$statement = self::getBuilder()->prepareStatemnt('select * from ' . $table);
+        $order_by = isset($options['sort']) ? "ORDER BY  {$options['sort'][0]} {$options['sort'][1]}" : '';
+
+        $statement = self::getBuilder()->prepareStatemnt("select * from {$table} {$order_by}");
 		$statement->execute();
 
 		return $statement->fetchAll(PDO::FETCH_CLASS, $model);

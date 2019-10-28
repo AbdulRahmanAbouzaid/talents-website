@@ -42,5 +42,6 @@ class PagesController extends Controller
 
 	}
 
+
 	
 }
