@@ -5,7 +5,7 @@
 
     <ul class="list-unstyled components">
         <p>Admin Roles</p>
-        <li class="active">
+        <li class="<?= isset($users) ? 'active' : ''?>">
             <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Users</a>
             <ul class="collapse list-unstyled" id="homeSubmenu">
                 <li>
@@ -25,13 +25,15 @@
                 </li>
             </ul>
         </li>
-        <li>
-            <a href="#">Events</a>
+        <li class="<?= isset($events) ? 'active' : ''?>">
+            <a href="/admin/events">Events</a>
         </li>
-        <li>
+        <li class="<?= isset($materials) ? 'active' : ''?>">
             <a href="/admin/materials">Materials</a>
         </li>
-        
+        <li class="<?= isset($talents) ? 'active' : ''?>">
+            <a href="/admin/talents">Manage Talents</a>
+        </li>
         <li>
             <a href="#">Notifications</a>
         </li>

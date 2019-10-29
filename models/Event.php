@@ -21,4 +21,11 @@ class Event extends Model {
     }
 
 
+
+    public function getTalents()
+    {
+        return TalentType::whereIn('id', $this->talents_ids);
+    }
+
+
 }

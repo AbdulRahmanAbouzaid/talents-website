@@ -40,7 +40,10 @@ $router->post('material/update', 'MaterialController@updateMaterial');
 
 
 // admin panel routes
-$router->get('admin/home', 'AdminController@index');
+$router->get('admin/login', 'AdminController@viewLogin');
+$router->post('admin/login', 'AdminController@login');
+$router->get('admin/logout', 'AdminController@logout');
+$router->get('admin/home', 'AdminController@viewAllUsers');
 $router->get('admin/users', 'AdminController@viewAllUsers');
 $router->post('admin/users/create', 'AdminController@createUser');
 $router->post('admin/users/update', 'AdminController@updateUser');
@@ -48,4 +51,12 @@ $router->get('admin/users/delete', 'AdminController@deleteUser');
 $router->get('admin/users/talented', 'AdminController@viewTalented');
 $router->get('admin/users/organizations', 'AdminController@viewOrganizations');
 $router->get('admin/users/visitors', 'AdminController@viewVisitors');
+$router->get('admin/users/admins', 'AdminController@viewAdmins');
 $router->get('admin/materials', 'AdminController@viewMaterials');
+$router->get('admin/materials/delete', 'AdminController@deleteMaterial');
+$router->get('admin/events', 'AdminController@viewEvents');
+$router->get('admin/events/delete', 'AdminController@deleteEvent');
+$router->get('admin/talents', 'AdminController@viewTalents');
+$router->post('admin/talents/update', 'AdminController@updateTalent');
+$router->get('admin/talents/delete', 'AdminController@deleteTalent');
+$router->post('admin/talents/create', 'AdminController@createTalent');

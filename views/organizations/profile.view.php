@@ -97,7 +97,7 @@
             <?php } ?>
             
             <?php foreach($events as $event) { ?>
-                <div data-id="<?= $event->id?>" class="card  mt-3" >
+                <div data-id="<?= $event->id?>" class="card  mt-3" id="<?=$event->id?>">
                     <div class="card-header bg-light-coral">
                         <img src="<?=$src?>" class="img-profile-post float-left" alt="">
                         <span class=" float-left ml-3 name-post " id="event-title<?=$event->id?>"><?= $event->title?></span>

@@ -74,7 +74,7 @@ class UsersController extends Controller{
             'profilePicture' => 'required',
         ]);
 
-        $imgData =addslashes (file_get_contents($_FILES['profilePicture']['tmp_name']));
+        $imgData = addslashes(file_get_contents($_FILES['profilePicture']['tmp_name']));
 
         $user = $this->getLoggedUser();
         

@@ -36,7 +36,9 @@ class Controller {
     public function middleware($type)
     {
         $user = $this->getLoggedUser();
-        if($type == 'auth' && !$user){
+        if($type == 'admin' && (!$user || !$user->isAdmin())){
+            return $this->redirectTo('/admin/login');
+        }elseif($type == 'auth' && !$user){
             return $this->redirectTo('/login');
         }elseif($type == 'guest' && $user){
             return $this->redirectTo('/profile?id=' . $user->id);
