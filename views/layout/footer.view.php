@@ -31,9 +31,13 @@
           conn.onmessage = function(e){
               var content = e.data;
               var data = content.split(";delimeter;");
-              if(data[3] == '%comment%') {
+              if(data[3] == '%comment%' || data[3] == '%admin%') {
                 $('.no-notifications').remove();
-                $('.notify-dropdown').prepend('<a class="dropdown-item" href="/profile?id='+data[1]+'&notification_id='+data[2]+'#'+data[4]+'"> '+data[0]+'</a><div class="dropdown-divider"></div>');
+                if(data[3] == '%comment%'){
+                  $('.notify-dropdown').prepend('<a class="dropdown-item" href="/profile?id='+data[1]+'&notification_id='+data[2]+'#'+data[4]+'"> '+data[0]+'</a><div class="dropdown-divider"></div>');
+                }else{
+                  $('.notify-dropdown').prepend('<a class="dropdown-item" href="/notifications?id='+data[1]+'&notification_id='+data[2]+'"> '+data[0]+'</a><div class="dropdown-divider"></div>');
+                }
                 $('.notification-count').html(parseInt($('.notification-count').html(), 10)+1);
               }else{
                 if($('.msg_history')[0]){

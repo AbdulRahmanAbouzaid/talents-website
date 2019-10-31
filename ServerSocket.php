@@ -54,6 +54,14 @@ class ServerSocket implements MessageComponentInterface {
                     $client->send($content);
                 }
             }
+        }elseif($recData['type'] == 'admin'){
+            $message = $recData['text'];
+            $recData['content'] = $recData['text'];
+            $notification_id = Notification::create($recData);
+            $content = $message . ';delimeter;' . $recData['to'] . ';delimeter;' . $notification_id . ';delimeter;%'.$recData['type'].'%';
+            foreach($this->clients as $client){
+                $client->send($content);
+            }
         }
 
         

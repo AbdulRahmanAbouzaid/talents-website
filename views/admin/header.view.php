@@ -2,6 +2,7 @@
   if (session_status() == PHP_SESSION_NONE) {
       session_start();
   }
+  $logged_admin = User::find($_SESSION['user_id']);
 ?>
 <!DOCTYPE html>
 <html lang="en">

@@ -94,6 +94,7 @@
                             name="user_type"
                             >
                             <option value="0">Choose</option>
+                            <option value="1">Admin</option>
                             <option value="2">Talented</option>
                             <option value="3">Organization</option>
                             <option value="4">Visitor</option>
@@ -188,7 +189,7 @@
                 Confirm Delete
             </div>
             <div class="modal-body">
-                Do you want to delete Account permanentely?             
+                Do you want to delete permanentely?             
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>

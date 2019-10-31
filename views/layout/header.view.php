@@ -107,7 +107,7 @@
               <a class="nav-link  py-0 my-0" href="#" id="Notification" role="button" data-toggle="dropdown" aria-haspopup="true"
                 aria-expanded="false">
                 <?php 
-                    $commentNotifications = $logged_user->commentNotifications(); 
+                    $commentNotifications = $logged_user->getNotifications(); 
                     $notif_count = count($commentNotifications);
                   ?>
                 <i class="far fa-bell" style="position: relative;"></i>

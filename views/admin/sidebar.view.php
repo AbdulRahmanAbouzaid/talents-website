@@ -35,7 +35,7 @@
             <a href="/admin/talents">Manage Talents</a>
         </li>
         <li>
-            <a href="#">Notifications</a>
+            <a href="/admin/notifications">Notifications</a>
         </li>
         
     </ul>

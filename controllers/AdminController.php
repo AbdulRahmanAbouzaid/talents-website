@@ -175,6 +175,25 @@ class AdminController extends Controller {
 
 
 
+    public function viewMaterialComments()
+    {
+        $material = Material::find($_GET['id']);
+        $comments = $material->comments();
+		require 'views/admin/comments.view.php';
+    }
+
+    
+
+
+    public function deleteComment()
+    {
+        $this->middleware('admin');
+        Comment::delete($_GET['id']);
+        return $this->redirectTo($_SERVER['HTTP_REFERER']);        
+    }
+
+
+
 
     public function viewEvents()
     {
@@ -240,6 +259,15 @@ class AdminController extends Controller {
         $this->middleware('admin');
         TalentType::create(array_merge($_POST, $_FILES));
         return $this->redirectTo($_SERVER['HTTP_REFERER']);        
+    }
+
+
+
+
+
+    public function viewNotificationForm(Type $var = null)
+    {
+		require 'views/admin/notifications.view.php';
     }
 
 }

@@ -170,10 +170,10 @@ class User extends Model{
 
 
 
-    public function commentNotifications()
+    public function getNotifications()
     {
         $sql = "select * from notifications";
-        $sql .= " where sent_to = {$this->id} AND type = 3 AND is_read = 0";
+        $sql .= " where ((sent_to = {$this->id} AND type = 3) || type = 1) AND is_read = 0";
         $statement = self::getBuilder()->prepareStatemnt($sql);
         $statement->execute();
 
