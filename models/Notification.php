@@ -11,11 +11,10 @@ class Notification extends Model {
         switch($data['type']){
             case 'message' : $type = 2;
                             break;
-            case 'admin' : $type = 1;
+            case 'admin' : $type = 2;
                             break;
             case 'comments' : $type = 3;
                             break;
-            default : $type = 1;
         }
 
         return self::insert([

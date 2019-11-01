@@ -55,10 +55,12 @@ class ServerSocket implements MessageComponentInterface {
                 }
             }
         }elseif($recData['type'] == 'admin'){
+            $chat = Chat::findOrCreate($recData['from'], $recData['to']);
             $message = $recData['text'];
-            $recData['content'] = $recData['text'];
+            $chat->addMessage($recData);
+            $recData['content'] = '/chat?other_id='.$recData['from'];
             $notification_id = Notification::create($recData);
-            $content = $message . ';delimeter;' . $recData['to'] . ';delimeter;' . $notification_id . ';delimeter;%'.$recData['type'].'%';
+            $content = $message . ';delimeter;' . $recData['from'] . ';delimeter;' . $notification_id . ';delimeter;%'.$recData['type'].'%';
             foreach($this->clients as $client){
                 $client->send($content);
             }

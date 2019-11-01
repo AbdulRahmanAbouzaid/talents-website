@@ -197,8 +197,10 @@ img{ max-width:100%;}
           </div>
           <div class="type_msg">
             <div class="input_msg_write">
-              <input type="text" class="write_msg" placeholder="Type a message" />
-              <button class="msg_send_btn" type="button" onclick="sendMsg()"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+              <input type="text" class="write_msg" placeholder="Type a message" <?= $chat_with->isAdmin() ? 'disabled' : ''?>/>
+              <?php if(!$chat_with->isAdmin()){?>
+                <button class="msg_send_btn" type="button" onclick="sendMsg()" ><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+              <?php } ?> 
             </div>
           </div>
         </div>

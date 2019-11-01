@@ -97,4 +97,16 @@ class Chat extends Model {
 		$statement->execute();
     }
 
+
+
+    public static function findAdmin($admin)
+    {
+        $sql = "select * from chats";
+        $sql .= " where (first_side = '{$admin}' and second_side = 0)";
+
+        $statement = self::getBuilder()->prepareStatemnt($sql);
+        $statement->execute();
+        return $statement->fetchAll(PDO::FETCH_CLASS, 'Chat')[0];
+    }
+
 }
