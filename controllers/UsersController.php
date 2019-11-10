@@ -32,10 +32,10 @@ class UsersController extends Controller{
         if($user->isTalented()){
             $user_talents = $user->getTalented()->getTalents();
             $talents = TalentType::selectAll();
-            $update_action = '/organization/update-profile'; 
+            $update_action = '/talented/update-profile'; 
         }elseif($user->isOrganization()){
             $organization = $user->getOrganization();
-            $update_action = '/talented/update-profile'; 
+            $update_action = '/organization/update-profile'; 
         }else {
             $update_action = '/user/update-profile';
         }

@@ -63,15 +63,18 @@
                                     <input type="email" name="email" class="form-control" value="<?=$logged_user->email?>" aria-label="Default"
                                         aria-describedby="inputGroup-sizing-default" disabled>
                                 </div>
-                                <?php if(isset($organization)){ ?>
+                                <?php 
+                                    if($logged_user->isOrganization() || $logged_user->isTalented()){
+                                        $desc = $logged_user->isTalented() ? $logged_user->getTalented()->description : $logged_user->getOrganization()->description;
+                                ?>
                                     <div class="input-group mb-3 ">
                                         <div class="input-group-prepend ">
                                             <span class="input-group-text text-white bg-sandy-brown" id="inputGroup-sizing-default">Description</span>
                                         </div>
-                                        <input type="text" name="description" class="form-control" value="<?=$organization->description?>" aria-label="Default"
+                                        <input type="text" name="description" class="form-control" value="<?=$desc?>" aria-label="Default"
                                             aria-describedby="inputGroup-sizing-default">
                                     </div>
-                                <?php }elseif(isset($user_talents)){ ?>
+                                <?php }if(isset($user_talents)){ ?>
                                     <div class="input-group mb-3">
                                         <div class="input-group-prepend ">
                                             <span class="input-group-text text-white bg-sandy-brown" id="inputGroup-sizing-default">Talents</span>

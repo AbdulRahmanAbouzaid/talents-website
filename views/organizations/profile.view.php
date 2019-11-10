@@ -17,6 +17,9 @@
               <div class="col-md-8 mx-auto  text-center br-15" style="background:#f1e3d6" >
                 <p  class=" my-auto name-font-design"> <?= $user->full_name?></p>
               </div>
+              <div class="col-md-8 mx-auto  text-center br-15" style="background:#f1e3d6; margin-top:5px" >
+                <p  class=" my-auto name-font-design"><?= $user->getOrganization()->description?></p>
+              </div>
             </div>
 
           </div>

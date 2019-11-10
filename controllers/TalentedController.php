@@ -52,8 +52,10 @@ class TalentedController extends Controller {
         $user = $this->getLoggedUser();
         if(password_verify($_POST['current-password'], $user->password)){
             $user->updateInfo($_POST);
+            
             Talented::update($user->getTalented()->id, [
-                'talents_ids' => implode(',', $_POST['talent-types'])
+                'talents_ids' => implode(',', $_POST['talent-types']),
+                'description' => $_POST['description']
             ]);
 
             return $this->redirectTo('/profile?id='.$user->id);

@@ -22,9 +22,10 @@ class OrganizationsController extends Controller {
         $user = $this->getLoggedUser();
         if(password_verify($_POST['current-password'], $user->password)){
             $user->updateInfo($_POST);
-            // Organization::update($user->getOrganization()->id, [
-            //     'description' => $_POST['description']
-            // ]);
+
+            Organization::update($user->getOrganization()->id, [
+                'description' => $_POST['description']
+            ]);
 
             return $this->redirectTo('/profile?id='.$user->id);
         }
