@@ -40,13 +40,13 @@
     >
       <a class="navbar-brand" href="/">
         <img
-          src="/public/img/talent.png"
+          src="/public/img/logo.jpeg"
           width="40"
           height="40"
           class="d-inline-block align-top"
           alt=""
         />
-        <b> Talents Website </b>
+        <b> TalentScope </b>
       </a>
 
       <button
