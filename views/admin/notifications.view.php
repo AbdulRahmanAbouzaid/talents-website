@@ -49,14 +49,18 @@
 
     function sendNotification() {
         var body = $('.notification-body').val();
-        console.log(body);
-        var msg = {
-            text : body,
-            type : 'admin',
-            from : <?= $logged_admin->id?>,
-            to : 0,
-        };
-        conn.send(JSON.stringify(msg));
-        $('.notification-body').val("");
+        if (body.replace(/[\n\r]+|[\s]{2,}/g, ' ').trim() !== "") {
+            console.log(body);
+            var msg = {
+                text : body,
+                type : 'admin',
+                from : <?= $logged_admin->id?>,
+                to : 0,
+            };
+            conn.send(JSON.stringify(msg));
+            $('.notification-body').val("");
+        }else{
+            alert('Body can not be empty');
+        }
     }
 </script>

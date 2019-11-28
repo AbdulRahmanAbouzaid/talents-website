@@ -219,19 +219,24 @@ img{ max-width:100%;}
         });
 
         function sendMsg() {
-            var message =  $('.write_msg').val();
-            var msg = { 
+            var message =  $('.write_msg').val();  
+            if (message.replace(/[\n\r]+|[\s]{2,}/g, ' ').trim() !== "") {
+              var msg = { 
                 text : message,
                 type : 'message',
                 from : <?= $current_user->id?>,
                 to : <?= $chat_with->id?>
-            };
+              };
 
-            conn.send(JSON.stringify(msg));
+              conn.send(JSON.stringify(msg));
+              
+              $('.msg_history').append('<div class="outgoing_msg"><div class="sent_msg"><p>'+message+'</p><span class="time_date"> 11:01 AM    |    June 9</span> </div></div>');
+              $(".msg_history").scrollTop($(".msg_history")[0].scrollHeight);            
+              $('.write_msg').val('');
+            }else {
+              alert('Message can not be empty');
+            }
             
-            $('.msg_history').append('<div class="outgoing_msg"><div class="sent_msg"><p>'+message+'</p><span class="time_date"> 11:01 AM    |    June 9</span> </div></div>');
-            $(".msg_history").scrollTop($(".msg_history")[0].scrollHeight);            
-            $('.write_msg').val('');
         }
 
     </script>

@@ -64,10 +64,9 @@
                   onchange="talendM()"
                   name="user_type"
                 >
-                  <option value="0">Choose</option>
                   <option value="2">Talented</option>
                   <option value="3">Organization</option>
-                  <option value="4">Visitor</option>
+                  <option value="4" selected>Visitor</option>
                 </select>
               </div>
 
@@ -121,6 +120,7 @@
               type="password"
               class="form-control"
               id="confirmPassword"
+              name="password-confirm"
               placeholder="Password"
               onfocusout="passwordVC()"
               onfocusin="defultpasswordC()"

@@ -50,30 +50,7 @@
                           <input type="datetime-local" name="date" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
                           
                           <br>
-                          <label for="title">Choose Talents of the event</label>                            
-                          <div class="dropdown " >
-                              <button
-                                class="btn dropdown-toggle bg-dim-gray text-white"
-                                type="button"
-                                id="dropdownMenuButton"
-                                data-toggle="dropdown"
-                                aria-haspopup="true"
-                                aria-expanded="false"
-                              >
-                                Choose
-                              </button>
-                              <div
-                                class="dropdown-menu"
-                                aria-labelledby="dropdownMenuButton"
-                              >
-                                <?php foreach($talents as $talent) { ?>
-                                  <input type="checkbox" class="ml-2" value=<?=$talent->id?> name="talent-types[]" />
-                                  <?= $talent->name ?><br />
-                                <?php } ?>
-                              </div>
-                            </div>
                           
-
                           <!-- <div class="row"></div>
                           <div class="col-md-7 bg-sandy-brown p-1 mt-3 br-15">
                           

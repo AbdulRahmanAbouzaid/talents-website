@@ -188,8 +188,8 @@ class AdminController extends Controller {
     public function deleteComment()
     {
         $this->middleware('admin');
-        $material = Comment::find($_GET['comment_id'])->material();
-        Comment::delete($_GET['comment_id']);
+        $material = Comment::find($_GET['id'])->material();
+        Comment::delete($_GET['id']);
         Material::update($material->id, [
             'comments' => $material->comments - 1
         ]);

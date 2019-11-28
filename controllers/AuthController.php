@@ -53,9 +53,10 @@ class AuthController extends Controller{
     {
         $this->validate($_POST, [
             'email' => 'required|unique:users',
-            'password' => 'required',
+            'password' => 'required|confirmed',
             'full_name' => 'required',
-            'talent-types' => 'requiredIf:user_type=2'
+            'talent-types' => 'requiredIf:user_type=2',
+            'user_type' => 'required'
         ]);
 
         $_POST['password'] = password_hash($_POST['password'], PASSWORD_BCRYPT, ['cost' => 12]);
