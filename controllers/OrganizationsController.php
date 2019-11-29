@@ -44,7 +44,6 @@ class OrganizationsController extends Controller {
             'title' => 'required',
             'content' => 'required',
             'date' => 'required',
-            'talent-types' => 'required'
         ]);
 
         session_start();

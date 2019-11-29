@@ -24,8 +24,8 @@ class Organization extends Model {
             'organization_id' => $this->id,
             'title' => $data['title'],
             'content' => $data['content'],
-            'date' => $data['date'],
-            'talents_ids' => implode(',', $data['talent-types'])
+            'date' => $data['date']
+            //'talents_ids' => implode(',', $data['talent-types'])
             // 'media' => $data['file']
         ]);
     }
