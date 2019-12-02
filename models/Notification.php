@@ -13,7 +13,7 @@ class Notification extends Model {
                             break;
             case 'admin' : $type = 2;
                             break;
-            case 'comments' : $type = 3;
+            case 'comment' : $type = 3;
                             break;
         }
 
