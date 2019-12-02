@@ -12,31 +12,41 @@ include 'layout/header.view.php';
 
 	.about-img {
 		width: 100%;
+		padding: 10px;
 	}
+
+	.benefit .content {
+		top: 70px;
+		font-size: 24px;
+		/* margin: 10px; */
+		text-align: center
+	}
+
+
 </style>
 
 <link rel="stylesheet" href="/public/css/min-card.css" />
 
 <div class="about-container">
-	<div class="row">
+	<div class="row benefit">
 		<div class="col-md-6">
 			<img class="about-img" src="/public/img/show.jpg" alt="" width="500" height="500">
 		</div>
-		<div class="col-md-6">
+		<div class="col-md-6 content">
 			<h2>Show Your Talent</h2>
 			<p>
-			Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+			One of the best path to a successful life is to discover your talents, develop it, and then deploy it. But before you can deploy your talent and serve others with it, you have to know that talent matters, believe that you are talented, be curious to know what talents you have, be disciplined enough to develop them, and be wise enough to use it to improve the lives of others and your own life. I know it takes more than talent to be successful , but talent is still important
 			</p>
 		</div>
 	</div>
 
 	<hr>
 
-	<div class="row">
-		<div class="col-md-6">
+	<div class="row benefit">
+		<div class="col-md-6 content">
 			<h2>Looking for Talents</h2>
 			<p>
-			Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+			support the talented people , Facilitate communication between talented people and supporting organizations, Providing assistance in the discovery of talent and show support to be known in the community, Organizations provide opportunities for people to invest and publicize their talents at the same time, An opportunity to form relationships and gain experience from other talents.
 			</p>
 		</div>
 

@@ -82,7 +82,7 @@ CREATE TABLE `events` (
   `content` text NOT NULL,
   `date` datetime NOT NULL,
   `type` varchar(30) DEFAULT NULL,
-  `talents_ids` set('1','2','3','4','5') ] NULL,
+  `talents_ids` set('1','2','3','4','5') NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
