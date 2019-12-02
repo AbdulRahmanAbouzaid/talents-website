@@ -53,7 +53,7 @@ class AuthController extends Controller{
     {
         $this->validate($_POST, [
             'email' => 'required|unique:users',
-            'password' => 'required|confirmed',
+            'password' => 'required|confirmed|minSize:6',
             'full_name' => 'required',
             'talent-types' => 'requiredIf:user_type=2',
             'user_type' => 'required'

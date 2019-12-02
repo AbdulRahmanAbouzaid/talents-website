@@ -46,7 +46,7 @@
           class="d-inline-block align-top"
           alt=""
         />
-        <b> TalentScope </b>
+        <b> TalentSpace </b>
       </a>
 
       <button
@@ -77,7 +77,7 @@
             </li>
           <?php } else {?>
             <li class="nav-item nav-icon active px-2 ">
-              <a class="nav-link py-0 my-0" href="#" ><i class="fas fa-home"></i></a>
+              <a class="nav-link py-0 my-0" href="/" ><i class="fas fa-home"></i></a>
             </li>
             <?php if($logged_user->isTalented() || $logged_user->isVisitor()){?>
               <li class="nav-item nav-icon dropdown px-2">

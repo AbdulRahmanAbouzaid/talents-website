@@ -101,4 +101,15 @@ class Validator {
     }
     
 
+
+    public function minSize($input, $min_size)
+    {
+        $value = $this->request[$input];
+        if(strlen($value) < $min_size){
+            return $input . ' must be '. $min_size .' or more characters ';
+        }
+
+        return false;
+    }
+
 }
