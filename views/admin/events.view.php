@@ -19,7 +19,7 @@
                         <th scope="col">#</th>
                         <th scope="col">Author</th>
                         <th scope="col">Title</th>
-                        <th scope="col">Aiming To</th>
+                       
                         <th scope="col">Date</th>
                         <th scope="col">Actions</th>
                     </tr>
@@ -34,7 +34,7 @@
                             <th scope="row"><?= $count ?> </th>
                             <td><a href="/profile?id=<?=$user->id?>" target="_blank"><?= $user->full_name ?></td>
                             <td><?=$event->title?></td>
-                            <td><?= implode(array_column($event->getTalents(), 'name'), ', ') ?></td>
+                            
                             <td><?= $event->date ?></td>
                             <td>
                                 <a class="btn btn-primary" href="/profile?id=<?=$user->id?>#<?=$event->id?>" target="_blank"><i class="fa fa-eye"></i></a>
